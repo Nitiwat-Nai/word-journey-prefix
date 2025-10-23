@@ -1,622 +1,268 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Journey: คำศัพท์วันพิเศษ</title>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&family=Mali:wght@600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌈 Word Journey: Prefix Focus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #f78fb3;
+      --blue: #74b9ff;
+      --yellow: #ffeaa7;
+      --green: #55efc4;
+      --purple: #a29bfe;
+      --text-dark: #2d3436;
+      --card-bg: #ffffffd9;
+    }
 
-        /* สีสันหลักสำหรับ UI ที่ไม่ใช่บัตรคำศัพท์ (Card) */
-        :root {
-            --color-red: #FF6B6B; /* Coral Red - ใช้สำหรับ Title และ Border */
-            --color-background-start: #A29BFE; /* Light Purple */
-            --color-background-end: #FDCB6E; /* Orange-Yellow */
-            --text-color: #2c3e50; /* Dark Blue Gray */
-            --card-color: #FFFFFF;
-        }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      margin: 0;
+      background: linear-gradient(145deg, var(--blue), var(--pink), var(--yellow));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
+      animation: bgmove 10s infinite alternate;
+      background-size: 300% 300%;
+    }
 
-        /* --- MOBILE PORTRAIT FOCUS (แก้ไขให้เต็มแนวตั้ง ไม่บีบอัดความกว้าง) --- */
-        body {
-            font-family: 'Mali', cursive, 'Sarabun', sans-serif;
-            background: linear-gradient(135deg, var(--color-background-start), var(--color-background-end));
-            color: var(--text-color);
-            margin: 0;
-            padding: 10px; /* ลด padding ขอบจอเพื่อเพิ่มพื้นที่แนวตั้ง */
-            display: flex;
-            justify-content: center;
-            align-items: center; /* จัดกึ่งกลางแนวตั้ง */
-            min-height: 100vh; /* ทำให้ Body เต็มความสูงจอ */
-            text-align: center;
-            box-sizing: border-box;
-        }
+    @keyframes bgmove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
 
-        .container {
-            background-color: var(--card-color);
-            padding: 1.2rem; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); 
-            width: 100%;
-            max-width: 600px; /* จำกัดความกว้างไม่ให้กว้างเกินไป */
-            box-sizing: border-box;
-            border: 4px solid var(--color-red); 
-            
-            /* <<< แก้ไขสำคัญ: ทำให้กรอบนี้ขยายตัวเพื่อใช้พื้นที่แนวตั้งมากขึ้นในจอแนวตั้ง */
-            min-height: 80vh; 
-            /* ----------------------------------------------------------------- */
+    .container {
+      background: var(--card-bg);
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 500px;
+      padding: 1.2rem;
+      animation: pop 0.5s ease;
+    }
 
-            display: flex;
-            flex-direction: column; /* เรียงเนื้อหาในกรอบจากบนลงล่าง */
-            justify-content: space-between; /* กระจายเนื้อหาให้ใช้พื้นที่เต็มแนวตั้ง */
-        }
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 
-        h1 {
-            color: var(--color-red);
-            font-family: 'Mali', cursive;
-            font-size: 1.8em; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        h1.lesson-title {
-            color: var(--text-color); 
-            font-size: 1.8em; 
-        }
+    h1 {
+      font-family: 'Mali', cursive;
+      color: var(--text-dark);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
 
-        /* ----------------------- */
-        /* Category Page (Mobile)  */
-        /* ----------------------- */
-        #category-page { 
-            display: block; 
-            /* ทำให้หน้า Category Page ขยายเต็มพื้นที่ที่ Container มีให้ */
-            flex-grow: 1; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* จัดเนื้อหาตรงกลางหน้า Category */
-        }
-        .category-grid {
-            display: grid;
-            grid-template-columns: 1fr; 
-            gap: 0.8rem; 
-            margin-top: 0.8rem;
-        }
-        .category-button {
-            color: white;
-            border: none;
-            padding: 1rem 0.5rem; 
-            border-radius: 15px;
-            font-size: 1em; 
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4); 
-            transition: all 0.2s ease-in-out;
-            text-transform: none;
-            font-family: 'Mali', cursive;
-            line-height: 1.3;
-        }
-        .category-button:hover { transform: translateY(-2px); }
-        .category-button:active { transform: translateY(1px) !important; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4) !important; }
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
 
-        /* ----------------------- */
-        /* Lesson Page (Mobile Optimized) */
-        /* ----------------------- */
-        #lesson-page { 
-            display: none; 
-            flex-grow: 1; /* ทำให้หน้า Lesson Page ขยายเต็มพื้นที่ */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* กระจาย Title, Card, Controls */
-        }
-        #vocab-card {
-            background-color: var(--card-primary);
-            border-radius: 20px;
-            padding: 1.5rem 1rem; /* ลด padding การ์ดลงเล็กน้อย */
-            min-height: 150px; 
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            border: 4px solid var(--card-accent); 
-            /* กำหนดให้การ์ดใช้พื้นที่ว่างที่เหลือในแนวตั้ง */
-            flex-grow: 1;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-            
-            /* จัดเนื้อหาใน Vocab Card ให้อยู่ตรงกลางเสมอ */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        /* 3. คำศัพท์ กับคำแปลให้อยู่คนละบรรทัด */
-        #english-word {
-            font-size: 2.2em; /* ลดขนาดคำศัพท์อังกฤษ */
-            color: var(--card-accent); 
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-            margin-bottom: 0.2rem;
-            font-weight: 700;
-            display: block; /* ทำให้เป็น Block Level ให้อยู่คนละบรรทัด */
-        }
-        #thai-word {
-            font-size: 1.5em; /* ลดขนาดคำศัพท์ไทย */
-            color: #FFFFFF; 
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            margin-bottom: 0;
-            display: block; /* ทำให้เป็น Block Level ให้อยู่คนละบรรทัด */
-        }
-        
-        /* 2. ปรับขนาดปุ่มควบคุมด้านล่างให้เหมาะสม */
-        .control-group {
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: center;
-            gap: 0.6rem; /* ลดระยะห่างระหว่างปุ่มในกลุ่ม */
-            margin-top: 0.6rem; 
-        }
-        .control-group button {
-            color: white;
-            border: none;
-            padding: 8px 12px; /* ลด padding ปุ่มควบคุม */
-            border-radius: 30px;
-            font-size: 0.9em; /* ลดขนาดตัวอักษรปุ่มควบคุม */
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease-in-out;
-        }
-        /* ปุ่ม Back/Stop/Play ใช้ 1/3 */
-        #play-pause-btn, #stop-btn, #back-to-cat-btn {
-            width: calc(33.33% - 0.4rem);
-        }
-        /* ปุ่ม Prev/Next/Audio ใช้ 1/2 */
-        #prev-btn, #next-btn, .audio-btn {
-            width: calc(50% - 0.3rem);
-        }
-        
-        /* สีปุ่มควบคุม (คงเดิม) */
-        .audio-btn { background-color: #1ABC9C; box-shadow: 0 3px 0 #16A085; } 
-        .audio-btn:hover { background-color: #16A085; }
-        .nav-btn { background-color: #F39C12; box-shadow: 0 3px 0 #E67E22; } 
-        .nav-btn:hover { background-color: #E67E22; }
-        .play-btn { background-color: #3498DB; box-shadow: 0 3px 0 #2980B9; } 
-        .play-btn:hover { background-color: #2980B9; }
-        .back-btn { background-color: #9B59B6; box-shadow: 0 3px 0 #8E44AD; } 
-        .back-btn:hover { background-color: #8E44AD; }
-        .control-group button:disabled { background-color: #ccc; }
+    .category-button {
+      background-color: var(--purple);
+      color: white;
+      border: none;
+      border-radius: 18px;
+      font-size: 1.1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+      transition: all 0.2s ease-in-out;
+      font-family: 'Mali', cursive;
+    }
 
+    .category-button:hover {
+      transform: translateY(-3px);
+      background-color: var(--pink);
+    }
 
-        /* --- DESKTOP/TABLET Optimization (ปรับปรุงเล็กน้อย) --- */
-        @media (min-width: 600px) {
-            .container { max-width: 700px; padding: 2.5rem; border-radius: 30px; min-height: 500px; }
-            h1 { font-size: 3.5em; }
-            h1.lesson-title { font-size: 2.5em; }
-            .category-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 1.5rem;
-            }
-            .category-button { padding: 1.5rem; font-size: 1.3em; }
-            #english-word { font-size: 4em; }
-            #thai-word { font-size: 3em; }
-            .control-group button {
-                width: auto;
-                padding: 12px 25px;
-                font-size: 1.1em;
-            }
-            /* ยกเลิกการจำกัดความกว้างปุ่มเมื่ออยู่บนเดสก์ท็อป */
-            #play-pause-btn, #stop-btn, #back-to-cat-btn, #prev-btn, #next-btn, .audio-btn {
-                width: auto;
-                flex-grow: 1;
-            }
-        }
-    </style>
+    #lesson-page { display: none; }
+
+    #vocab-card {
+      background: var(--blue);
+      border-radius: 20px;
+      padding: 1.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #english-word {
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    #thai-word {
+      font-size: 1.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    button {
+      font-family: 'Mali', cursive;
+      border: none;
+      border-radius: 30px;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.1s ease, background-color 0.2s;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .nav-btn { background-color: var(--pink); }
+    .audio-btn { background-color: var(--green); }
+    .play-btn { background-color: var(--blue); }
+    .back-btn { background-color: var(--purple); }
+
+    @media (min-width: 600px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <div id="category-page">
-            <h1>🎉 Word Journey: คำศัพท์วันพิเศษ</h1>
-            <div id="category-grid" class="category-grid"></div>
-        </div>
-
-        <div id="lesson-page">
-            <h1 id="lesson-title" class="lesson-title" style="margin-top: 0;"></h1>
-            <div id="vocab-card">
-                <div id="english-word" class="word">...</div>
-                <div id="thai-word" class="word">...</div>
-            </div>
-            
-            <div class="control-area">
-                <div class="control-group">
-                    <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
-                    <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
-                </div>
-                <div class="control-group">
-                    <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">ฟัง (ไทย) 🔊</button>
-                    <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">Listen (EN) 🔊</button>
-                </div>
-                <div class="control-group">
-                    <button id="play-pause-btn" class="play-btn">Play 🔄</button>
-                    <button id="stop-btn" class="back-btn">Stop ⏹️</button>
-                    <button id="back-to-cat-btn" class="back-btn">กลับหน้าหลัก 🏠</button>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div id="category-page">
+      <h1>📚 Word Journey<br>Prefix Focus</h1>
+      <div id="category-grid" class="category-grid"></div>
     </div>
 
-    <script>
-        // ข้อมูลธีมสีและไอคอน
-        const themeData = {
-            "เทศกาลลอยกระทง": { icon: "🛶", buttonBg: "#74B9FF", buttonShadow: "#0984E3", cardPrimary: "#3498DB", cardAccent: "#FFE66D" }, // Blue/Yellow
-            "เทศกาลอีสเตอร์": { icon: "🐰", buttonBg: "#A29BFE", buttonShadow: "#6C5CE7", cardPrimary: "#9B59B6", cardAccent: "#FDCB6E" }, // Purple/Orange
-            "เทศกาลปีใหม่": { icon: "🍾", buttonBg: "#3498DB", buttonShadow: "#2980B9", cardPrimary: "#FF6B6B", cardAccent: "#FFE66D" }, // Red/Yellow
-            "วันคริสต์มาส": { icon: "🎁", buttonBg: "#2ECC71", buttonShadow: "#27AE60", cardPrimary: "#2ECC71", cardAccent: "#E74C3C" }, // Green/Red
-            "วันวาเลนไทน์": { icon: "💘", buttonBg: "#E74C3C", buttonShadow: "#C0392B", cardPrimary: "#E74C3C", cardAccent: "#FFFFFF" }, // Red/White
-            "วันสงกรานต์": { icon: "🐘", buttonBg: "#1ABC9C", buttonShadow: "#16A085", cardPrimary: "#4ECDC4", cardAccent: "#FFE66D" }, // Teal/Yellow
-            "วันฮาโลวีน": { icon: "👻", buttonBg: "#F39C12", buttonShadow: "#D35400", cardPrimary: "#F39C12", cardAccent: "#9B59B6" } // Orange/Purple
-        };
+    <div id="lesson-page">
+      <h1 id="lesson-title">...</h1>
+      <div id="vocab-card">
+        <span id="english-word">...</span>
+        <span id="thai-word">...</span>
+      </div>
+      <div class="control-group">
+        <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
+        <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
+      </div>
+      <div class="control-group">
+        <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">🔊 ฟัง (ไทย)</button>
+        <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">🎧 Listen (EN)</button>
+      </div>
+      <div class="control-group">
+        <button id="play-pause-btn" class="play-btn">▶️ Play</button>
+        <button id="stop-btn" class="back-btn">⏹️ Stop</button>
+        <button id="back-to-cat-btn" class="back-btn">🏠 กลับ</button>
+      </div>
+    </div>
+  </div>
 
-        // ข้อมูลคำศัพท์ (นำมาจากโค้ดเดิม)
-        const vocabularyData = {
-            "เทศกาลลอยกระทง": [
-                { thai: "ลอยกระทง", english: "Loy Krathong" },
-                { thai: "กระทง", english: "krathong (float)" },
-                { thai: "พระจันทร์เต็มดวง", english: "full moon" },
-                { thai: "แม่น้ำ", english: "river" },
-                { thai: "ดอกบัว", english: "lotus" },
-                { thai: "เทียน", english: "candle" },
-                { thai: "ธูป", english: "incense stick" },
-                { thai: "ดอกไม้", english: "flowers" },
-                { thai: "ต้นกล้วย", english: "banana tree" },
-                { thai: "ใบตอง", english: "banana leaf" },
-                { thai: "การขอขมา", english: "asking for forgiveness" },
-                { thai: "การลอย", english: "to float" },
-                { thai: "ความเชื่อ", english: "belief" },
-                { thai: "พิธี", english: "ceremony" },
-                { thai: "ประเพณี", english: "tradition" },
-                { thai: "โคมลอย", english: "sky lantern (khom loi)" },
-                { thai: "พลุ/ดอกไม้ไฟ", english: "fireworks" },
-                { thai: "ดวงจันทร์", english: "moon" },
-                { thai: "แสงสว่าง", english: "light" },
-                { thai: "ศาลเจ้าแม่คงคา", english: "Goddess of Water Shrine" }
-            ],
-            "เทศกาลอีสเตอร์": [
-                { thai: "อีสเตอร์", english: "Easter" },
-                { thai: "ไข่อีสเตอร์", english: "Easter Egg" },
-                { thai: "กระต่ายอีสเตอร์", english: "Easter Bunny" },
-                { thai: "ช็อกโกแลต", english: "chocolate" },
-                { thai: "ฤดูใบไม้ผลิ", english: "spring" },
-                { thai: "ตะกร้า", english: "basket" },
-                { thai: "การค้นหาไข่", english: "egg hunt" },
-                { thai: "ไม้กางเขน", english: "cross" },
-                { thai: "โบสถ์", english: "church" },
-                { thai: "การฟื้นคืนชีพ", english: "resurrection" },
-                { thai: "วันศุกร์ประเสริฐ", english: "Good Friday" },
-                { thai: "วันอาทิตย์ใบลาน", english: "Palm Sunday" },
-                { thai: "ลูกแกะ", english: "lamb" },
-                { thai: "ลูกไก่", english: "chick" },
-                { thai: "ขนมหวาน", english: "candy" },
-                { thai: "เจลลี่บีน", english: "Jelly Bean" },
-                { thai: "ย้อมสี", english: "dye (verb)" },
-                { thai: "หมวกบอนเน็ต", english: "bonnet" },
-                { thai: "ขบวนพาเหรด", english: "parade" },
-                { thai: "การเฉลิมฉลอง", english: "celebration" }
-            ],
-            "เทศกาลปีใหม่": [
-                { thai: "ปีใหม่", english: "New Year" }, 
-                { thai: "วันส่งท้ายปีเก่า", english: "New Year's Eve" }, 
-                { thai: "การนับถอยหลัง", english: "countdown" }, 
-                { thai: "ดอกไม้ไฟ", english: "fireworks" }, 
-                { thai: "การเฉลิมฉลอง", english: "celebration" }, 
-                { thai: "ความหวัง", english: "hope" }, 
-                { thai: "ของขวัญ", english: "gift/present" }, 
-                { thai: "คำอวยพร", english: "greeting" }, 
-                { thai: "มติ", english: "resolution" }, 
-                { thai: "เลี้ยงฉลอง", english: "feast" },
-                { thai: "ความสุข", english: "happiness" }, 
-                { thai: "ความเจริญรุ่งเรือง", english: "prosperity" }, 
-                { thai: "ปฏิทิน", english: "calendar" }, 
-                { thai: "ปาร์ตี้", english: "party" }, 
-                { thai: "สวัสดีปีใหม่", english: "Happy New Year" }, 
-                { thai: "ชนแก้ว", english: "toasting" }, 
-                { thai: "พรปีใหม่", english: "New Year's wishes" }, 
-                { thai: "ปีที่กำลังจะมา", english: "coming year" }, 
-                { thai: "เพลงประจำเทศกาล", english: "holiday song" }, 
-                { thai: "ของตกแต่ง", english: "decorations" }
-            ],
-            "วันคริสต์มาส": [
-                { thai: "ซานตาคลอส", english: "Santa Claus" }, 
-                { thai: "กวางเรนเดียร์", english: "reindeer" }, 
-                { thai: "ของขวัญ", english: "gift/present" }, 
-                { thai: "ต้นคริสต์มาส", english: "Christmas tree" }, 
-                { thai: "หิมะ", english: "snow" }, 
-                { thai: "ระฆัง", english: "bell" }, 
-                { thai: "ถุงเท้า", english: "stocking" }, 
-                { thai: "เพลงคริสต์มาส", english: "carol" }, 
-                { thai: "เทียนไข", english: "candle" }, 
-                { thai: "สุขสันต์วันคริสต์มาส", english: "Merry Christmas" },
-                { thai: "เลื่อน", english: "sleigh" }, 
-                { thai: "เอลฟ์", english: "elf" }, 
-                { thai: "พวงหรีด", english: "wreath" }, 
-                { thai: "มิสเซิลโท", english: "mistletoe" }, 
-                { thai: "ปล่องไฟ", english: "chimney" }, 
-                { thai: "เครื่องประดับ", english: "ornaments" }, 
-                { thai: "สายรุ้ง", english: "tinsel" }, 
-                { thai: "ขนมปังขิง", english: "gingerbread" }, 
-                { thai: "ฮอลลี่", english: "holly" }, 
-                { thai: "เตาผิง", english: "fireplace" }
-            ],
-            "วันวาเลนไทน์": [
-                { thai: "ความรัก", english: "love" }, 
-                { thai: "หัวใจ", english: "heart" }, 
-                { thai: "ช็อกโกแลต", english: "chocolate" }, 
-                { thai: "ดอกกุหลาบ", english: "rose" }, 
-                { thai: "บัตรอวยพร", english: "greeting card" }, 
-                { thai: "คู่รัก", english: "couple" }, 
-                { thai: "กามเทพ", english: "Cupid" }, 
-                { thai: "กอด", english: "hug" }, 
-                { thai: "จูบ", english: "kiss" }, 
-                { thai: "คนที่รัก", english: "sweetheart" },
-                { thai: "ผู้ชื่นชม", english: "admirer" }, 
-                { thai: "ความเสน่หา", english: "affection" }, 
-                { thai: "การเดท", english: "date" }, 
-                { thai: "การขอแต่งงาน", english: "proposal" }, 
-                { thai: "ช่อดอกไม้", english: "bouquet" }, 
-                { thai: "ที่รัก", english: "darling" }, 
-                { thai: "คนที่แอบชอบ", english: "crush" }, 
-                { thai: "โรแมนติก", english: "romantic" }, 
-                { thai: "การออกเดท", english: "dating" },
-                { thai: "คู่ชีวิต", english: "partner" }
-            ],
-            "วันสงกรานต์": [
-                { thai: "ปีใหม่ไทย", english: "Thai New Year" }, 
-                { thai: "สรงน้ำพระ", english: "bathing rite (Buddha image)" }, 
-                { thai: "ก่อเจดีย์ทราย", english: "sand pagoda" }, 
-                { thai: "รดน้ำดำหัว", english: "pouring water ceremony" }, 
-                { thai: "ขันน้ำ", english: "water bowl" }, 
-                { thai: "ปืนฉีดน้ำ", english: "water gun" }, 
-                { thai: "แป้งหอม", english: "fragrant powder" }, 
-                { thai: "ครอบครัว", english: "family" }, 
-                { thai: "วัด", english: "temple" }, 
-                { thai: "เสื้อลายดอก", english: "floral shirt" },
-                { thai: "ทำบุญ", english: "merit making" }, 
-                { thai: "ผู้สูงอายุ", english: "elders" }, 
-                { thai: "ต่างจังหวัด", english: "province" }, 
-                { thai: "ประพรมน้ำ", english: "sprinkle water" }, 
-                { thai: "เสื้อผ้าใหม่", english: "new clothes" }, 
-                { thai: "พระพุทธรูป", english: "Buddha image" }, 
-                { thai: "ความเคารพ", english: "respect" }, 
-                { thai: "ประเพณี", english: "tradition" }, 
-                { thai: "การเล่นน้ำ", english: "water fight" }, 
-                { thai: "วันมหาสงกรานต์", english: "Maha Songkran" }
-            ],
-            "วันฮาโลวีน": [
-                { thai: "ฟักทอง", english: "Pumpkin" }, 
-                { thai: "ตะเกียงฟักทอง", english: "Jack-o'-lantern" }, 
-                { thai: "ชุดแฟนซี", english: "Costume" }, 
-                { thai: "หลอกหรือเลี้ยง", english: "Trick-or-treat" }, 
-                { thai: "ผี", english: "Ghost" }, 
-                { thai: "แม่มด", english: "Witch" }, 
-                { thai: "แวมไพร์", english: "Vampire" }, 
-                { thai: "ค้างคาว", english: "Bat" }, 
-                { thai: "ใยแมงมุม", english: "Cobweb" }, 
-                { thai: "บ้านผีสิง", english: "Haunted house" },
-                { thai: "สุสาน", english: "cemetery" }, 
-                { thai: "หัวกะโหลก", english: "skull" }, 
-                { thai: "คาถา", english: "spell" }, 
-                { thai: "ปาร์ตี้ชุดแฟนซี", english: "costume party" }, 
-                { thai: "ความกลัว", english: "fear" }, 
-                { thai: "ลึกลับ/น่าขนลุก", english: "eerie" }, 
-                { thai: "หมอก", english: "fog" },
-                { thai: "โลงศพ", english: "coffin" },
-                { thai: "เครื่องราง", english: "amulet" },
-                { thai: "ดวงจันทร์", english: "moon" }
-            ]
-        };
-        // ----------------------------------------------------
-        // ส่วน JavaScript (Logics - Unchanged)
-        // ----------------------------------------------------
-        const categoryPage = document.getElementById('category-page');
-        const lessonPage = document.getElementById('lesson-page');
-        const categoryGrid = document.getElementById('category-grid');
-        const lessonTitle = document.getElementById('lesson-title');
-        const vocabCard = document.getElementById('vocab-card');
-        const thaiWord = document.getElementById('thai-word');
-        const englishWord = document.getElementById('english-word');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const backToCatBtn = document.getElementById('back-to-cat-btn');
-        const stopBtn = document.getElementById('stop-btn');
+  <script>
+    const vocabularyData = {
+      "IN-": [{thai:"ไม่สมบูรณ์",english:"Incomplete"},{thai:"มองไม่เห็น",english:"Invisible"}],
+      "EX-": [{thai:"ส่งออก",english:"Export"},{thai:"ตรวจสอบ",english:"Examine"}],
+      "PRE-": [{thai:"เตรียมการ",english:"Prepare"},{thai:"ทำนาย",english:"Predict"}],
+      "DIS-": [{thai:"ไม่เห็นด้วย",english:"Disagree"},{thai:"ไม่ชอบ",english:"Dislike"}],
+      "UN-": [{thai:"ไม่พอใจ",english:"Unhappy"},{thai:"ไม่เป็นธรรม",english:"Unfair"}],
+      "RE-": [{thai:"ทำซ้ำ",english:"Repeat"},{thai:"เขียนใหม่",english:"Rewrite"}],
+      "CO-": [{thai:"ร่วมมือ",english:"Cooperate"},{thai:"เปรียบเทียบ",english:"Compare"}],
+      "SUB-": [{thai:"รถไฟใต้ดิน",english:"Subway"},{thai:"ส่ง",english:"Submit"}],
+      "ANTI-": [{thai:"ยาปฏิชีวนะ",english:"Antibiotic"},{thai:"คำตรงข้าม",english:"Antonym"}],
+      "INTER-": [{thai:"ระหว่างประเทศ",english:"International"},{thai:"อินเทอร์เน็ต",english:"Internet"}]
+    };
 
-        let currentCategoryVocabs = [];
-        let currentIndex = 0;
-        let isPlaying = false;
-        let voices = [];
-        let currentVocab = {};
+    const categoryGrid = document.getElementById("category-grid");
+    const categoryPage = document.getElementById("category-page");
+    const lessonPage = document.getElementById("lesson-page");
+    const lessonTitle = document.getElementById("lesson-title");
+    const englishWord = document.getElementById("english-word");
+    const thaiWord = document.getElementById("thai-word");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const backBtn = document.getElementById("back-to-cat-btn");
+    const stopBtn = document.getElementById("stop-btn");
 
-        // --- Web Speech API ---
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                voices = window.speechSynthesis.getVoices();
-            };
-        }
-        function speakText(text, lang, onEndCallback = null) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                
-                if (lang === 'th-TH') {
-                    utterance.volume = 1.0; 
-                    utterance.rate = 1.1; 
-                } else {
-                    utterance.volume = 1.0; 
-                    utterance.rate = 1.0; 
-                }
+    let currentVocab = {};
+    let currentList = [];
+    let index = 0;
+    let isPlaying = false;
 
-                let targetVoice = null;
-                if (lang === 'th-TH') {
-                    targetVoice = voices.find(v => v.lang.startsWith('th-TH') && v.name.includes('Lekha'));
-                    if (!targetVoice) { 
-                        targetVoice = voices.find(v => v.lang.startsWith('th-TH'));
-                    }
-                } 
-                else if (lang === 'en-US') {
-                    targetVoice = voices.find(v => v.lang.startsWith('en-US') && v.name.includes('Samantha'));
-                    if (!targetVoice) { 
-                        targetVoice = voices.find(v => v.lang.startsWith('en-US'));
-                    }
-                }
-                
-                if (targetVoice) {
-                    utterance.voice = targetVoice;
-                }
+    Object.keys(vocabularyData).forEach(cat=>{
+      const btn=document.createElement("button");
+      btn.className="category-button";
+      btn.textContent=cat;
+      btn.onclick=()=>startLesson(cat);
+      categoryGrid.appendChild(btn);
+    });
 
-                if (onEndCallback) {
-                    utterance.onend = onEndCallback;
-                }
-                window.speechSynthesis.speak(utterance);
-            }
-        }
+    function startLesson(cat){
+      categoryPage.style.display="none";
+      lessonPage.style.display="block";
+      lessonTitle.textContent=cat;
+      currentList=vocabularyData[cat];
+      index=0;
+      showWord();
+    }
 
-        // --- Game Logic ---
-        function createCategoryButtons() {
-            categoryGrid.innerHTML = ''; 
+    function showWord(){
+      currentVocab=currentList[index];
+      englishWord.textContent=currentVocab.english;
+      thaiWord.textContent=currentVocab.thai;
+    }
 
-            for (const category in vocabularyData) {
-                const theme = themeData[category] || { icon: "✨", buttonBg: "#9B59B6", buttonShadow: "#8E44AD" };
-                const button = document.createElement('button');
-                button.className = 'category-button';
-                button.innerHTML = `${category} ${theme.icon}`; 
-                
-                button.style.backgroundColor = theme.buttonBg;
-                button.style.boxShadow = `0 4px 0 ${theme.buttonShadow}`;
-                
-                button.onmouseover = () => { button.style.backgroundColor = theme.buttonShadow; button.style.transform = 'translateY(-2px)'; };
-                button.onmouseleave = () => { button.style.backgroundColor = theme.buttonBg; button.style.transform = 'translateY(0)'; };
-                button.onmousedown = () => { button.style.transform = 'translateY(1px)'; button.style.boxShadow = `0 1px 0 ${theme.buttonShadow}`; };
+    nextBtn.onclick=()=>{ if(index<currentList.length-1){index++;showWord();}};
+    prevBtn.onclick=()=>{ if(index>0){index--;showWord();}};
+    backBtn.onclick=()=>{lessonPage.style.display="none";categoryPage.style.display="block";stopAuto();};
+    playPauseBtn.onclick=toggleAutoPlay;
+    stopBtn.onclick=stopAuto;
 
-                button.addEventListener('click', () => startLesson(category));
-                categoryGrid.appendChild(button);
-            }
-        }
+    function speakText(text,lang,cb=null){
+      if('speechSynthesis'in window){
+        window.speechSynthesis.cancel();
+        const u=new SpeechSynthesisUtterance(text);
+        u.lang=lang;
+        if(cb)u.onend=cb;
+        window.speechSynthesis.speak(u);
+      }
+    }
 
-        function startLesson(category) {
-            currentCategoryVocabs = vocabularyData[category];
-            const theme = themeData[category];
+    function toggleAutoPlay(){
+      if(isPlaying){stopAuto();}
+      else{isPlaying=true;playPauseBtn.textContent="⏸️ Pause";autoPlay();}
+    }
 
-            vocabCard.style.backgroundColor = theme.cardPrimary;
-            vocabCard.style.borderColor = theme.cardAccent;
-            englishWord.style.color = theme.cardAccent;
+    function stopAuto(){
+      isPlaying=false;
+      playPauseBtn.textContent="▶️ Play";
+      window.speechSynthesis.cancel();
+    }
 
-            lessonTitle.textContent = category; 
-            
-            currentIndex = 0;
-            displayVocab();
-            categoryPage.style.display = 'none';
-            lessonPage.style.display = 'flex'; // ใช้ flex เพื่อให้ content ใน lesson-page ขยายได้
-            updateButtonState();
-        }
-
-        function displayVocab() {
-            if (currentIndex < currentCategoryVocabs.length) {
-                currentVocab = currentCategoryVocabs[currentIndex];
-                englishWord.textContent = currentVocab.english;
-                thaiWord.textContent = currentVocab.thai;
-                
-            } else {
-                englishWord.textContent = "Finished! 🥳";
-                thaiWord.textContent = "จบแล้ว! 🎉 แล้วเจอกันใหม่นะ";
-                stopAutoPlay();
-                nextBtn.disabled = true;
-                prevBtn.disabled = true;
-            }
-        }
-
-        function updateButtonState() {
-            if (currentIndex >= currentCategoryVocabs.length) {
-                nextBtn.disabled = true;
-                prevBtn.disabled = true;
-            } else {
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex >= currentCategoryVocabs.length - 1;
-            }
-            playPauseBtn.textContent = isPlaying ? 'Pause ⏸️' : 'Play 🔄';
-        }
-
-        function nextVocab() {
-            if (currentIndex < currentCategoryVocabs.length - 1) {
-                currentIndex++;
-                displayVocab();
-                updateButtonState();
-            } else if (currentIndex === currentCategoryVocabs.length - 1) {
-                currentIndex++;
-                displayVocab();
-                updateButtonState();
-            }
-        }
-        
-        function prevVocab() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                displayVocab();
-                updateButtonState();
-            }
-        }
-
-        function playCurrentVocabAuto() {
-            if (currentIndex >= currentCategoryVocabs.length) {
-                stopAutoPlay();
-                displayVocab(); 
-                return;
-            }
-            const currentVocabToPlay = currentCategoryVocabs[currentIndex];
-            
-            speakText(currentVocabToPlay.english, 'en-US', () => {
-                speakText(currentVocabToPlay.thai, 'th-TH', () => {
-                    if (isPlaying) {
-                        currentIndex++;
-                        displayVocab();
-                        updateButtonState();
-                        setTimeout(playCurrentVocabAuto, 1000); 
-                    }
-                });
-            });
-        }
-
-        function toggleAutoPlay() {
-            if (isPlaying) {
-                stopAutoPlay();
-            } else {
-                isPlaying = true;
-                updateButtonState();
-                if (currentIndex >= currentCategoryVocabs.length) {
-                    currentIndex = 0; 
-                    displayVocab();
-                }
-                playCurrentVocabAuto();
-            }
-        }
-
-        function stopAutoPlay() {
-            isPlaying = false;
-            updateButtonState();
-            window.speechSynthesis.cancel();
-        }
-
-        function goToCategoryPage() {
-            stopAutoPlay();
-            lessonPage.style.display = 'none';
-            categoryPage.style.display = 'flex'; // ใช้ flex เพื่อให้ content ใน category-page ขยายได้
-        }
-
-        // Event Listeners
-        nextBtn.addEventListener('click', nextVocab);
-        prevBtn.addEventListener('click', prevVocab);
-        playPauseBtn.addEventListener('click', toggleAutoPlay);
-        stopBtn.addEventListener('click', stopAutoPlay);
-        backToCatBtn.addEventListener('click', goToCategoryPage);
-
-        // Initial setup
-        createCategoryButtons();
-    </script>
+    function autoPlay(){
+      if(!isPlaying)return;
+      speakText(currentList[index].english,'en-US',()=>{
+        speakText(currentList[index].thai,'th-TH',()=>{
+          if(index<currentList.length-1){
+            index++;showWord();setTimeout(autoPlay,700);
+          }else{stopAuto();}
+        });
+      });
+    }
+  </script>
 </body>
 </html>
