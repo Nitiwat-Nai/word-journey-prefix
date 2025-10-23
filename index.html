@@ -8,133 +8,130 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&family=Mali:wght@600&display=swap');
 
-        /* สีสันหลักสำหรับ UI ที่ไม่ใช่บัตรคำศัพท์ (Card) */
         :root {
-            --color-red: #FF6B6B; /* Coral Red - ใช้สำหรับ Title และ Border */
-            --color-background-start: #A29BFE; /* Light Purple */
-            --color-background-end: #FDCB6E; /* Orange-Yellow */
-            --text-color: #2c3e50; /* Dark Blue Gray */
+            --color-red: #FF6B6B; 
+            --color-background-start: #A29BFE; 
+            --color-background-end: #FDCB6E; 
+            --text-color: #2c3e50; 
             --card-color: #FFFFFF;
         }
 
-        /* --- MOBILE PORTRAIT FOCUS (Default Styles for 9:16) --- */
+        /* ----------------------------------------------- */
+        /* --- 1. การกำหนดสัดส่วน 9:16 ที่ชัดเจน (Mobile) --- */
+        /* ----------------------------------------------- */
         body {
             font-family: 'Mali', cursive, 'Sarabun', sans-serif;
             background: linear-gradient(135deg, var(--color-background-start), var(--color-background-end));
             color: var(--text-color);
             margin: 0;
-            padding: 10px; /* ลด padding ขอบจอเพื่อเพิ่มพื้นที่แนวตั้ง */
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center; /* <<< แก้ไข: จัดกึ่งกลางแนวตั้ง เพื่อเติมพื้นที่ว่างด้านล่าง */
+            align-items: center; 
             min-height: 100vh;
             text-align: center;
             box-sizing: border-box;
         }
 
+        .phone-mockup {
+            /* กำหนดความกว้างสูงสุดให้พอดี 9:16 ในแนวตั้ง */
+            width: 100%;
+            max-width: 450px; /* ขนาดจำลองสูงสุดสำหรับโทรศัพท์ */
+            height: 100vh;
+            max-height: 800px; /* จำกัดความสูงไม่ให้เกินสัดส่วน */
+            
+            /* ใช้ Aspect Ratio Trick เพื่อให้เป็น 9:16 เสมอเมื่อหน้าจอจำกัด */
+            /* แต่เพื่อให้เต็มจอเท่าที่ทำได้ในแนวตั้ง เราจะใช้ flex/max-width */
+            
+            /* ใช้ media query เพื่อจัดการ 9:16 เมื่อความกว้างน้อยกว่าความสูง */
+            /* ในโค้ดจริง (Emulator) การตั้งค่า min-height: 100vh; + max-width จะช่วยให้เกิด effect 9:16 */
+            
+            background-color: transparent; /* พื้นหลังโปร่งใส */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        
         .container {
             background-color: var(--card-color);
-            padding: 1.2rem; 
+            padding: 1rem; /* ลด padding ภายนอกลงอีก */
             border-radius: 20px; 
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); 
-            width: 100%;
-            max-width: 600px; 
+            width: 95%; /* ใช้ 95% ของ phone-mockup width */
+            /* เมื่ออยู่ใน phone-mockup, container จะปรับตัวให้พอดีกับ 9:16 */
             box-sizing: border-box;
             border: 4px solid var(--color-red); 
-            /* ลบ margin-top: 5px; เพื่อให้การจัดกึ่งกลางสมบูรณ์ */
+            margin: auto; /* จัดกึ่งกลางใน phone-mockup */
+        }
+        
+        /* ----------------------------------------------- */
+        /* --- 2. การปรับขนาดปุ่มควบคุมให้เหมาะสม --- */
+        /* ----------------------------------------------- */
+        
+        /* Lesson Page (Mobile 9:16 Optimized) */
+        #vocab-card {
+            border-radius: 20px;
+            padding: 1.5rem 1rem; /* ลด padding การ์ดลงอีก */
+            min-height: 150px; /* ลดความสูงการ์ด */
+            margin-bottom: 0.8rem;
+        }
+        
+        /* 3. คำศัพท์ กับคำแปลให้อยู่คนละบรรทัด (โดยใช้ div/span) */
+        /* English */
+        #english-word {
+            font-size: 2.2em; /* ลดขนาดคำศัพท์อังกฤษ */
+            margin-bottom: 0.2rem;
+            display: block; /* ทำให้เป็น Block Level ให้อยู่คนละบรรทัด */
+        }
+        /* Thai */
+        #thai-word {
+            font-size: 1.5em; /* ลดขนาดคำศัพท์ไทย */
+            display: block; /* ทำให้เป็น Block Level ให้อยู่คนละบรรทัด */
+            margin-bottom: 0;
+        }
+        
+        .control-group {
+            gap: 0.5rem; /* ลดระยะห่างระหว่างปุ่มในกลุ่ม */
+            margin-top: 0.5rem; /* ลดระยะห่างด้านบน */
+        }
+        .control-group button {
+            width: calc(50% - 0.25rem); /* ให้ปุ่มคู่กันพอดีครึ่งจอ */
+            padding: 8px 12px; /* ลด padding ปุ่มควบคุม */
+            border-radius: 25px;
+            font-size: 0.8em; /* ลดขนาดตัวอักษรปุ่มควบคุม */
+        }
+        
+        /* ปุ่ม 3 ปุ่ม */
+        #back-to-cat-btn, #stop-btn {
+            width: calc(33.33% - 0.33rem); /* ปุ่ม 3 ปุ่ม แบ่ง 1/3 */
+        }
+        #play-pause-btn {
+            width: calc(33.33% - 0.33rem); 
         }
 
+        /* ----------------------------------------------- */
+        /* --- Styles อื่นๆ (ปรับตาม Word Code ล่าสุด) --- */
+        /* ----------------------------------------------- */
         h1 {
             color: var(--color-red);
             font-family: 'Mali', cursive;
-            font-size: 1.8em; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 1.6em; /* ลดขนาดหัวข้อลง */
+            margin-bottom: 0.8rem;
         }
         h1.lesson-title {
             color: var(--text-color); 
-            font-size: 1.8em; 
+            font-size: 1.6em;
         }
-
-        /* ----------------------- */
-        /* Category Page (Mobile)  */
-        /* ----------------------- */
-        #category-page { display: block; }
         .category-grid {
-            display: grid;
             grid-template-columns: 1fr; 
-            gap: 0.8rem; 
-            margin-top: 0.8rem;
+            gap: 0.7rem; 
         }
         .category-button {
-            color: white;
-            border: none;
-            padding: 1rem 0.5rem; 
-            border-radius: 15px;
-            font-size: 1em; 
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4); 
-            transition: all 0.2s ease-in-out;
-            text-transform: none;
-            font-family: 'Mali', cursive;
-            line-height: 1.3;
-        }
-        .category-button:hover { transform: translateY(-2px); }
-        .category-button:active { transform: translateY(1px) !important; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4) !important; }
-
-        /* ----------------------- */
-        /* Lesson Page (Mobile 9:16 Optimized) */
-        /* ----------------------- */
-        #lesson-page { display: none; }
-        #vocab-card {
-            background-color: var(--card-primary);
-            border-radius: 20px;
-            padding: 2rem 1rem; 
-            min-height: 180px; 
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            border: 4px solid var(--card-accent); 
-            margin-bottom: 1rem;
-        }
-        /* English ขึ้นก่อน Thai */
-        #english-word {
-            font-size: 2.8em; 
-            color: var(--card-accent); 
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        #thai-word {
-            font-size: 1.7em; 
-            color: #FFFFFF; 
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            margin-bottom: 0;
-        }
-        .control-group {
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: center;
-            gap: 0.6rem; 
-            margin-top: 0.6rem;
-        }
-        .control-group button {
-            color: white;
-            border: none;
-            width: calc(50% - 0.3rem); 
-            padding: 10px 15px; 
-            border-radius: 30px;
+            padding: 0.8rem 0.5rem; 
             font-size: 0.9em; 
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease-in-out;
         }
-        /* ปุ่ม Back/Stop ใช้ 50% */
-        #back-to-cat-btn, #stop-btn {
-            width: calc(50% - 0.3rem);
-        }
-
+        
         /* สีปุ่มควบคุม (คงเดิม) */
         .audio-btn { background-color: #1ABC9C; box-shadow: 0 3px 0 #16A085; } 
         .audio-btn:hover { background-color: #16A085; }
@@ -147,10 +144,11 @@
         .control-group button:disabled { background-color: #ccc; }
 
 
-        /* --- DESKTOP/TABLET Optimization --- */
+        /* --- DESKTOP/TABLET (คงเดิม) --- */
         @media (min-width: 600px) {
             body { align-items: center; padding: 20px; }
-            .container { max-width: 700px; padding: 2.5rem; border-radius: 30px; }
+            .phone-mockup { width: 95%; max-width: 700px; height: auto; max-height: none; }
+            .container { padding: 2.5rem; border-radius: 30px; }
             h1 { font-size: 3.5em; }
             h1.lesson-title { font-size: 2.5em; }
             .category-grid {
@@ -158,7 +156,7 @@
                 gap: 1.5rem;
             }
             .category-button { padding: 1.5rem; font-size: 1.3em; }
-            #vocab-card { min-height: 250px; }
+            #vocab-card { min-height: 250px; padding: 2.5rem 1rem; }
             #english-word { font-size: 4em; }
             #thai-word { font-size: 3em; }
             .control-group button {
@@ -166,45 +164,48 @@
                 padding: 12px 25px;
                 font-size: 1.1em;
             }
-            #back-to-cat-btn, #stop-btn {
+            #back-to-cat-btn, #stop-btn, #play-pause-btn {
                 width: auto;
+                flex-grow: 1;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="category-page">
-            <h1>📚 Word Journey: Prefix Focus</h1>
-            <div id="category-grid" class="category-grid"></div>
-        </div>
+    <div class="phone-mockup">
+        <div class="container">
+            <div id="category-page">
+                <h1>📚 Word Journey: Prefix Focus</h1>
+                <div id="category-grid" class="category-grid"></div>
+            </div>
 
-        <div id="lesson-page">
-            <h1 id="lesson-title" class="lesson-title"></h1>
-            <div id="vocab-card">
-                <span id="english-word" class="word">...</span>
-                <span id="thai-word" class="word">...</span>
-            </div>
-            
-            <div class="control-group">
-                <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
-                <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
-            </div>
-            <div class="control-group">
-                <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">ฟัง (ไทย) 🔊</button>
-                <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">Listen (EN) 🔊</button>
-            </div>
-            <div class="control-group">
-                <button id="play-pause-btn" class="play-btn">Play 🔄</button>
-                <button id="stop-btn" class="back-btn">Stop ⏹️</button>
-                <button id="back-to-cat-btn" class="back-btn">กลับหน้าหลัก 🏠</button>
+            <div id="lesson-page">
+                <h1 id="lesson-title" class="lesson-title"></h1>
+                <div id="vocab-card">
+                    <div id="english-word" class="word">...</div>
+                    <div id="thai-word" class="word">...</div>
+                </div>
+                
+                <div class="control-group">
+                    <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
+                    <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
+                </div>
+                <div class="control-group">
+                    <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">ฟัง (ไทย) 🔊</button>
+                    <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">Listen (EN) 🔊</button>
+                </div>
+                <div class="control-group">
+                    <button id="play-pause-btn" class="play-btn">Play 🔄</button>
+                    <button id="stop-btn" class="back-btn">Stop ⏹️</button>
+                    <button id="back-to-cat-btn" class="back-btn">กลับหน้าหลัก 🏠</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // *** DATA: PREFIX VOCABULARY (Expanded to 10 groups) ***
+        // *** DATA: PREFIX VOCABULARY (10 groups) ***
         const vocabularyData = {
             "1. IN- (In, Im, Il, Ir) 20 คำ": [
                 { thai: "ไม่สมบูรณ์", english: "Incomplete" }, { thai: "มองไม่เห็น", english: "Invisible" },
@@ -329,48 +330,48 @@
             ]
         };
         
-        // --- Theme Colors for each Category (Updated for 10 groups) ---
+        // --- Theme Colors for each Category ---
         const themeColors = {
             "1. IN- (In, Im, Il, Ir) 20 คำ": { 
                 btn_bg: "#3498DB", btn_shadow: "#2980B9", 
                 card_primary: "#2980B9", card_accent: "#F1C40F" 
-            }, // Blue/Yellow
+            }, 
             "2. EX- (ออก/อดีต) 20 คำ": { 
                 btn_bg: "#2ECC71", btn_shadow: "#27AE60", 
                 card_primary: "#27AE60", card_accent: "#E74C3C" 
-            }, // Green/Red
+            }, 
             "3. PRE- (ก่อน/ล่วงหน้า) 20 คำ": { 
                 btn_bg: "#9B59B6", btn_shadow: "#8E44AD", 
                 card_primary: "#8E44AD", card_accent: "#F39C12" 
-            }, // Purple/Orange
+            }, 
             "4. DIS- (ไม่/ตรงกันข้าม) 20 คำ": { 
                 btn_bg: "#FF6B6B", btn_shadow: "#D63031", 
                 card_primary: "#D63031", card_accent: "#4ECDC4" 
-            }, // Red/Teal
+            }, 
             "5. UN- (ไม่/ตรงกันข้าม) 20 คำ": { 
                 btn_bg: "#FDCB6E", btn_shadow: "#F39C12", 
                 card_primary: "#F39C12", card_accent: "#3498DB" 
-            }, // Orange/Blue
+            }, 
             "6. RE- (อีกครั้ง/ย้อนกลับ) 20 คำ": { 
                 btn_bg: "#A29BFE", btn_shadow: "#6C5CE7", 
                 card_primary: "#6C5CE7", card_accent: "#2ECC71" 
-            }, // Violet/Emerald
+            }, 
             "7. CO-/COM-/CON- (ร่วม/ด้วยกัน) 20 คำ": { 
                 btn_bg: "#1ABC9C", btn_shadow: "#16A085", 
                 card_primary: "#16A085", card_accent: "#FFD700" 
-            }, // Turquoise/Gold
+            }, 
             "8. SUB- (ภายใต้/รอง) 20 คำ": { 
                 btn_bg: "#34495E", btn_shadow: "#2C3E50", 
                 card_primary: "#2C3E50", card_accent: "#FF6B6B" 
-            }, // Dark Slate/Coral Red
+            }, 
             "9. ANTI- (ต่อต้าน/ตรงข้าม) 20 คำ": { 
                 btn_bg: "#E74C3C", btn_shadow: "#C0392B", 
                 card_primary: "#C0392B", card_accent: "#A29BFE" 
-            }, // Darker Red/Violet
+            }, 
             "10. INTER- (ระหว่าง/ท่ามกลาง) 20 คำ": { 
                 btn_bg: "#7F8C8D", btn_shadow: "#34495E", 
                 card_primary: "#95A5A6", card_accent: "#FFD700" 
-            } // Gray/Gold
+            } 
         };
 
         // ----------------------------------------------------
