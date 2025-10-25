@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌈 Word Journey: Prefix Focus (Styled)</title>
+    <title>🌈 Word Journey: Prefix Focus (Big Data)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
     
@@ -22,16 +22,15 @@
             --card-bg: #ffffffd9;
             
             /* Background/General Theme */
-            --color-red: var(--pink); /* ใช้ pink เป็นสีหลักของ Title แทน red */
-            --color-background-start: var(--blue); /* Start Blue */
-            --color-background-end: var(--yellow); /* End Yellow */
-            --text-color: var(--text-dark); /* Dark Text */
+            --color-red: var(--pink); 
+            --color-background-start: var(--blue); 
+            --color-background-end: var(--yellow); 
+            --text-color: var(--text-dark); 
             --card-base-color: var(--card-bg);
         }
 
         body {
             font-family: 'Mali', cursive, 'Sarabun', sans-serif;
-            /* Background Gradient from Prefix.html */
             background: linear-gradient(145deg, var(--blue), var(--pink), var(--yellow));
             background-size: 300% 300%;
             animation: bgmove 10s infinite alternate;
@@ -50,7 +49,6 @@
         }
 
         .container {
-            /* Card/Container style from Word Journey.html but using Prefix colors */
             background-color: var(--card-base-color);
             padding: 1.5rem; 
             border-radius: 30px; 
@@ -59,7 +57,7 @@
             max-width: 600px; 
             box-sizing: border-box;
             border: 5px solid var(--color-red); 
-            animation: pop 0.5s ease; /* Pop animation from Prefix.html */
+            animation: pop 0.5s ease; 
         }
         @keyframes pop {
             from { transform: scale(0.9); opacity: 0; }
@@ -67,7 +65,7 @@
         }
 
         h1 {
-            color: var(--color-red); /* Title color: Pink */
+            color: var(--color-red); 
             font-family: 'Mali', cursive;
             font-size: 2.5em; 
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
@@ -75,8 +73,8 @@
             line-height: 1.2;
         }
         h1.lesson-title {
-            color: var(--text-color); /* Dark Text for lesson title */
-            font-size: 1.8em !important; /* Smaller size for lesson title */
+            color: var(--text-color); 
+            font-size: 1.8em !important; 
         }
 
         /* ----------------------- */
@@ -90,7 +88,6 @@
             margin-top: 1.5rem;
         }
         .category-button {
-            /* Style from Prefix.html */
             background-color: var(--purple); 
             color: white; 
             border: none;
@@ -104,7 +101,6 @@
             text-transform: uppercase;
             font-family: 'Mali', cursive;
         }
-        /* Hover effect from Word Journey.html adapted for Prefix colors */
         .category-button:hover { transform: translateY(-3px); background-color: var(--pink); }
         .category-button:active { transform: translateY(1px) !important; box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4) !important; }
 
@@ -113,7 +109,6 @@
         /* ----------------------- */
         #lesson-page { display: none; }
         #vocab-card {
-            /* Style from Word Journey.html, colors are set via JS */
             border-radius: 25px;
             padding: 2.5rem 1.5rem; 
             min-height: 250px;
@@ -124,7 +119,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             margin-bottom: 1.5rem;
             transition: background-color 0.5s, border-color 0.5s;
-            animation: fadeIn 0.5s ease; /* FadeIn from Prefix.html */
+            animation: fadeIn 0.5s ease; 
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95); }
@@ -139,7 +134,7 @@
         }
         #thai-word {
             font-size: 2.5em; 
-            color: white; /* Thai word color: White */
+            color: white; 
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             margin-bottom: 0;
         }
@@ -172,17 +167,16 @@
         /* ------------------------------------------- */
         /* --- Control Button Colors (Prefix Theme) --- */
         /* ------------------------------------------- */
-        /* Note: Using colors from Prefix.html's CSS */
         .nav-btn { background-color: var(--pink); } 
-        .nav-btn:hover { background-color: #d86895; } /* Darker pink for hover */
+        .nav-btn:hover { background-color: #d86895; } 
         .audio-btn { background-color: var(--green); }
-        .audio-btn:hover { background-color: #38c5a2; } /* Darker green for hover */
+        .audio-btn:hover { background-color: #38c5a2; } 
         .play-btn { background-color: var(--blue); }
-        .play-btn:hover { background-color: #5aa1e5; } /* Darker blue for hover */
+        .play-btn:hover { background-color: #5aa1e5; } 
         .back-btn { background-color: var(--purple); }
-        .back-btn:hover { background-color: #8c82e2; } /* Darker purple for hover */
+        .back-btn:hover { background-color: #8c82e2; } 
         
-        /* Box-shadow for buttons (optional, but good for depth) */
+        /* Box-shadow for buttons */
         .nav-btn { box-shadow: 0 4px 0 #d86895; }
         .audio-btn { box-shadow: 0 4px 0 #38c5a2; }
         .play-btn { box-shadow: 0 4px 0 #5aa1e5; }
@@ -253,29 +247,105 @@
 
     <script>
         // ----------------------------------------------------
-        // --- DATA from Prefix.html ---
+        // --- VOCABULARY DATA (Grouped by 20-25 words) ---
         // ----------------------------------------------------
         const vocabularyData = {
-            "IN-": [{thai:"ไม่สมบูรณ์",english:"Incomplete"},{thai:"มองไม่เห็น",english:"Invisible"}],
-            "EX-": [{thai:"ส่งออก",english:"Export"},{thai:"ตรวจสอบ",english:"Examine"}],
-            "PRE-": [{thai:"เตรียมการ",english:"Prepare"},{thai:"ทำนาย",english:"Predict"}],
-            "DIS-": [{thai:"ไม่เห็นด้วย",english:"Disagree"},{thai:"ไม่ชอบ",english:"Dislike"}],
-            "UN-": [{thai:"ไม่พอใจ",english:"Unhappy"},{thai:"ไม่เป็นธรรม",english:"Unfair"}],
-            "RE-": [{thai:"ทำซ้ำ",english:"Repeat"},{thai:"เขียนใหม่",english:"Rewrite"}],
-            "CO-": [{thai:"ร่วมมือ",english:"Cooperate"},{thai:"เปรียบเทียบ",english:"Compare"}],
-            "SUB-": [{thai:"รถไฟใต้ดิน",english:"Subway"},{thai:"ส่ง",english:"Submit"}],
-            "ANTI-": [{thai:"ยาปฏิชีวนะ",english:"Antibiotic"},{thai:"คำตรงข้าม",english:"Antonym"}],
-            "INTER-": [{thai:"ระหว่างประเทศ",english:"International"},{thai:"อินเทอร์เน็ต",english:"Internet"}]
+            // --- GROUP 1: UN- (20 Words) ---
+            "UN- (ไม่)": [
+                {thai:"ไม่พอใจ",english:"Unhappy"},
+                {thai:"ไม่เป็นธรรม",english:"Unfair"},
+                {thai:"ถอดรหัส",english:"Unlock"},
+                {thai:"ไม่ได้คาดหวัง",english:"Unexpected"},
+                {thai:"ไม่น่าเชื่อ",english:"Unbelievable"},
+                {thai:"ไม่สำคัญ",english:"Unimportant"},
+                {thai:"ไม่สมบูรณ์",english:"Unfinished"},
+                {thai:"ไม่ถูกต้อง",english:"Incorrect"},
+                {thai:"ไม่สามารถควบคุมได้",english:"Uncontrollable"},
+                {thai:"ไม่รู้จัก",english:"Unknown"},
+                {thai:"ไม่สวมเสื้อผ้า",english:"Undressed"},
+                {thai:"ไม่สนใจ",english:"Uninterested"},
+                {thai:"ไม่เต็มใจ",english:"Unwilling"},
+                {thai:"แกะ",english:"Unpack"},
+                {thai:"คลายตัว",english:"Untangle"},
+                {thai:"ไม่จำเป็น",english:"Unnecessary"},
+                {thai:"ไม่มั่นคง",english:"Unstable"},
+                {thai:"ไม่จำกัด",english:"Unlimited"},
+                {thai:"ไม่ชัดเจน",english:"Unclear"},
+                {thai:"ไม่โชคดี",english:"Unlucky"}
+            ],
+            // --- GROUP 2: IN- (25 Words) ---
+            "IN- (ไม่/เข้า)": [
+                {thai:"ไม่สมบูรณ์",english:"Incomplete"},
+                {thai:"มองไม่เห็น",english:"Invisible"},
+                {thai:"ไม่พอใจ",english:"Inadequate"},
+                {thai:"ไม่สามารถเข้าถึงได้",english:"Inaccessible"},
+                {thai:"ไม่สามารถทนได้",english:"Intolerable"},
+                {thai:"ไม่สามารถหยุดได้",english:"Incessant"},
+                {thai:"ไม่สุภาพ",english:"Impolite"}, // Imp- เป็นรูปแบบย่อยของ In-
+                {thai:"เป็นไปไม่ได้",english:"Impossible"}, // Im-
+                {thai:"ไม่เป็นทางการ",english:"Informal"},
+                {thai:"การลงทุน",english:"Investment"},
+                {thai:"ภายใน",english:"Interior"},
+                {thai:"นำเข้า",english:"Import"},
+                {thai:"ฝัง",english:"Embed"}, // Em-
+                {thai:"ไม่สามารถแยกแยะได้",english:"Indistinguishable"},
+                {thai:"ไม่ยืดหยุ่น",english:"Inflexible"},
+                {thai:"ไม่ได้จงใจ",english:"Inadvertent"},
+                {thai:"ไม่เหมาะสม",english:"Inappropriate"},
+                {thai:"ไม่แน่นอน",english:"Insecure"},
+                {thai:"ไม่สามารถทำลายได้",english:"Indestructible"},
+                {thai:"ไม่มีประสบการณ์",english:"Inexperienced"},
+                {thai:"การฉีด",english:"Injection"},
+                {thai:"การสอบถาม",english:"Inquiry"},
+                {thai:"ไม่เหมาะสม",english:"Incompatible"},
+                {thai:"ไม่มีชีวิต",english:"Inanimate"},
+                {thai:"อยู่เฉย",english:"Inactive"}
+            ],
+            // --- GROUP 3: PRE- (20 Words) ---
+            "PRE- (ก่อน)": [
+                {thai:"เตรียมการ",english:"Prepare"},
+                {thai:"ทำนาย",english:"Predict"},
+                {thai:"ดูตัวอย่าง",english:"Preview"},
+                {thai:"กำหนดล่วงหน้า",english:"Predefine"},
+                {thai:"บรรพบุรุษ",english:"Predecessor"},
+                {thai:"วัยรุ่น",english:"Preteen"},
+                {thai:"ระมัดระวัง",english:"Precaution"},
+                {thai:"กำหนดล่วงหน้า",english:"Predetermine"},
+                {thai:"เกิดขึ้นก่อน",english:"Preexist"},
+                {thai:"ลำดับความสำคัญ",english:"Priority"}, // Prior-
+                {thai:"รับรู้",english:"Perceive"}, // Per-
+                {thai:"ก่อนการผลิต",english:"Pre-production"},
+                {thai:"สมัยก่อนประวัติศาสตร์",english:"Prehistoric"},
+                {thai:"อคติ",english:"Prejudice"},
+                {thai:"พรีเซนต์",english:"Present"},
+                {thai:"ข้ออ้าง",english:"Pretext"},
+                {thai:"ก่อนการเรียน",english:"Pre-school"},
+                {thai:"ล่วงหน้า",english:"Prepay"},
+                {thai:"ตั้งท้อง",english:"Pregnant"},
+                {thai:"ก่อนพิธี",english:"Pre-ceremony"}
+            ],
+            // --- GROUP 4: DIS- (4 Words - เพื่อเป็นหมวดเสริม) ---
+            "DIS- (ตรงข้าม/ไม่)": [
+                {thai:"ไม่เห็นด้วย",english:"Disagree"},
+                {thai:"ไม่ชอบ",english:"Dislike"},
+                {thai:"หายไป",english:"Disappear"},
+                {thai:"เปิดเผย",english:"Disclose"} 
+            ],
+            // --- GROUP 5: SUB- (3 Words - เพื่อเป็นหมวดเสริม) ---
+            "SUB- (ใต้/ย่อย)": [
+                {thai:"รถไฟใต้ดิน",english:"Subway"},
+                {thai:"ส่ง",english:"Submit"},
+                {thai:"ย่อย",english:"Subdivision"}
+            ]
         };
 
         // --- THEME DATA (Fixed for all prefixes based on Prefix.html colors) ---
-        // ใช้ชุดสีคงที่สำหรับทุกหมวดหมู่เพื่อให้สอดคล้องกับธีมหลักของ Prefix.html
         const defaultTheme = {
             icon: "✨", 
             buttonBg: 'var(--purple)', 
-            buttonShadow: 'var(--blue)', // ใช้ blue เป็น shadow/hover เพื่อความหลากหลาย
-            cardPrimary: 'var(--blue)', // Card BG: Blue
-            cardAccent: 'var(--yellow)' // English Word/Border: Yellow
+            buttonShadow: 'var(--blue)', 
+            cardPrimary: 'var(--blue)', 
+            cardAccent: 'var(--yellow)' 
         };
         
         // ----------------------------------------------------
@@ -314,10 +384,8 @@
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = lang;
                 
-                // Adjusting rate/volume (from Word Journey.html)
                 if (lang === 'th-TH') { utterance.rate = 1.1; } else { utterance.rate = 1.0; }
 
-                // Voice selection (simplified)
                 let targetVoice = voices.find(v => v.lang.startsWith(lang));
                 if (targetVoice) { utterance.voice = targetVoice; }
 
@@ -336,12 +404,12 @@
                 const theme = defaultTheme;
                 const button = document.createElement('button');
                 button.className = 'category-button';
-                button.innerHTML = `${category} ${theme.icon}`; 
+                // แสดงจำนวนคำศัพท์ในวงเล็บด้วย
+                button.innerHTML = `${category} (${vocabularyData[category].length} คำ) ${theme.icon}`; 
                 
                 button.style.backgroundColor = theme.buttonBg;
                 button.style.boxShadow = `0 6px 0 ${theme.buttonShadow}`;
                 
-                // Set hover/mouseleave directly on element for theme consistency
                 button.onmouseover = () => { button.style.backgroundColor = theme.buttonShadow; button.style.transform = 'translateY(-3px)'; };
                 button.onmouseleave = () => { button.style.backgroundColor = theme.buttonBg; button.style.transform = 'translateY(0)'; };
                 
@@ -354,7 +422,7 @@
             currentCategoryVocabs = vocabularyData[category];
             const theme = defaultTheme;
 
-            // 1. กำหนดธีมสีของ Vocab Card (ใช้สีคงที่จาก defaultTheme)
+            // 1. กำหนดธีมสีของ Vocab Card
             vocabCard.style.backgroundColor = theme.cardPrimary;
             vocabCard.style.border = `5px solid ${theme.cardAccent}`; 
             englishWord.style.color = theme.cardAccent;
@@ -379,7 +447,6 @@
                 englishWord.textContent = "Finished! 🥳";
                 thaiWord.textContent = "จบแล้ว! 🎉 กลับไปหน้าหลักได้เลย";
                 stopAutoPlay();
-                // ปิดการใช้งานปุ่มถัดไป/ก่อนหน้า เมื่อจบแล้ว
                 nextBtn.disabled = true;
                 prevBtn.disabled = true;
             }
@@ -393,12 +460,11 @@
                 prevBtn.disabled = currentIndex === 0;
                 nextBtn.disabled = currentIndex >= currentCategoryVocabs.length - 1;
             }
-            // Update Play/Pause button text
             playPauseBtn.textContent = isPlaying ? '⏸️ Pause' : '▶️ Play';
         }
 
         function nextVocab() {
-            if (currentIndex < currentCategoryVocabs.length) { // Allow one extra step for "Finished" message
+            if (currentIndex < currentCategoryVocabs.length) { 
                 currentIndex++;
                 displayVocab();
                 updateButtonState();
@@ -438,7 +504,6 @@
                 stopAutoPlay();
             } else {
                 isPlaying = true;
-                // If finished, restart from the beginning
                 if (currentIndex >= currentCategoryVocabs.length) {
                     currentIndex = 0; 
                     displayVocab();
