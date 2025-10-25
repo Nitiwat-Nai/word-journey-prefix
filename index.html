@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌈 Word Journey: Prefix Focus (Big Data)</title>
+    <title>🌈 Word Journey: Mega Prefix/Suffix Focus</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
     
@@ -83,7 +83,7 @@
         #category-page { display: block; }
         .category-grid {
             display: grid;
-            grid-template-columns: 1fr; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ปรับให้พอดี */
             gap: 1rem;
             margin-top: 1.5rem;
         }
@@ -91,9 +91,9 @@
             background-color: var(--purple); 
             color: white; 
             border: none;
-            padding: 1.8rem 1rem; 
+            padding: 1.5rem 1rem; /* ปรับให้พอดีกับคำยาว */
             border-radius: 20px;
-            font-size: 1.4em; 
+            font-size: 1.1em; /* ปรับขนาดตัวอักษรให้เล็กลงเล็กน้อย */
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4); 
@@ -138,6 +138,7 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             margin-bottom: 0;
         }
+        /* ... (Control Group and Button Styles remain the same) ... */
         .control-group {
             display: flex;
             flex-wrap: wrap;
@@ -164,9 +165,6 @@
             box-shadow: none;
         }
 
-        /* ------------------------------------------- */
-        /* --- Control Button Colors (Prefix Theme) --- */
-        /* ------------------------------------------- */
         .nav-btn { background-color: var(--pink); } 
         .nav-btn:hover { background-color: #d86895; } 
         .audio-btn { background-color: var(--green); }
@@ -176,7 +174,6 @@
         .back-btn { background-color: var(--purple); }
         .back-btn:hover { background-color: #8c82e2; } 
         
-        /* Box-shadow for buttons */
         .nav-btn { box-shadow: 0 4px 0 #d86895; }
         .audio-btn { box-shadow: 0 4px 0 #38c5a2; }
         .play-btn { box-shadow: 0 4px 0 #5aa1e5; }
@@ -188,28 +185,10 @@
         @media (min-width: 600px) {
             .container {
                 padding: 2.5rem;
-                max-width: 700px;
-            }
-            h1 {
-                font-size: 3.5em;
+                max-width: 800px; /* ขยายขนาด Container สำหรับหมวดหมู่ที่มากขึ้น */
             }
             .category-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-                gap: 1.5rem;
-            }
-            .category-button {
-                padding: 1.5rem;
-                font-size: 1.3em;
-            }
-            #english-word {
-                font-size: 4em;
-            }
-            #thai-word {
-                font-size: 3em;
-            }
-            .control-group button {
-                min-width: 120px;
-                padding: 12px 25px;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             }
         }
     </style>
@@ -218,7 +197,7 @@
 
     <div class="container">
         <div id="category-page">
-            <h1>📚 Word Journey<br>Prefix Focus</h1>
+            <h1>📚 Word Journey<br>Prefix/Suffix/Root Focus</h1>
             <div id="category-grid" class="category-grid"></div>
         </div>
 
@@ -247,95 +226,37 @@
 
     <script>
         // ----------------------------------------------------
-        // --- VOCABULARY DATA (Grouped by 20-25 words) ---
+        // --- MEGA VOCABULARY DATA (Each group has 20+ words) ---
         // ----------------------------------------------------
         const vocabularyData = {
-            // --- GROUP 1: UN- (20 Words) ---
-            "UN- (ไม่)": [
-                {thai:"ไม่พอใจ",english:"Unhappy"},
-                {thai:"ไม่เป็นธรรม",english:"Unfair"},
-                {thai:"ถอดรหัส",english:"Unlock"},
-                {thai:"ไม่ได้คาดหวัง",english:"Unexpected"},
-                {thai:"ไม่น่าเชื่อ",english:"Unbelievable"},
-                {thai:"ไม่สำคัญ",english:"Unimportant"},
-                {thai:"ไม่สมบูรณ์",english:"Unfinished"},
-                {thai:"ไม่ถูกต้อง",english:"Incorrect"},
-                {thai:"ไม่สามารถควบคุมได้",english:"Uncontrollable"},
-                {thai:"ไม่รู้จัก",english:"Unknown"},
-                {thai:"ไม่สวมเสื้อผ้า",english:"Undressed"},
-                {thai:"ไม่สนใจ",english:"Uninterested"},
-                {thai:"ไม่เต็มใจ",english:"Unwilling"},
-                {thai:"แกะ",english:"Unpack"},
-                {thai:"คลายตัว",english:"Untangle"},
-                {thai:"ไม่จำเป็น",english:"Unnecessary"},
-                {thai:"ไม่มั่นคง",english:"Unstable"},
-                {thai:"ไม่จำกัด",english:"Unlimited"},
-                {thai:"ไม่ชัดเจน",english:"Unclear"},
-                {thai:"ไม่โชคดี",english:"Unlucky"}
+            // --- GROUP 1: Negation Prefixes (23 Words) ---
+            "NEG- (IN-/UN-/DIS-/IM-)": [
+                {thai:"ไม่สามารถ",english:"Unable"}, {thai:"ไม่เป็นที่พอใจ",english:"Unsatisfied"}, {thai:"ไม่จำเป็น",english:"Unnecessary"}, {thai:"ไม่ยุติธรรม",english:"Unjust"}, {thai:"ไม่เชื่อ",english:"Disbelieve"},
+                {thai:"ไม่เห็นด้วย",english:"Disagree"}, {thai:"ไม่สะดวก",english:"Inconvenient"}, {thai:"มองไม่เห็น",english:"Invisible"}, {thai:"ไม่สมบูรณ์",english:"Incomplete"}, {thai:"ไม่ถูกต้อง",english:"Incorrect"},
+                {thai:"ไม่มีความสุข",english:"Unhappy"}, {thai:"ไม่แน่นอน",english:"Uncertain"}, {thai:"ไม่สำคัญ",english:"Unimportant"}, {thai:"ไม่สามารถควบคุมได้",english:"Uncontrollable"}, {thai:"แกะ",english:"Unwrap"}, 
+                {thai:"เป็นไปไม่ได้",english:"Impossible"}, {thai:"ไม่ซื่อสัตย์",english:"Dishonest"}, {thai:"ไม่รับผิดชอบ",english:"Irresponsible"}, {thai:"ผิดกฎหมาย",english:"Illegal"}, {thai:"ไม่เป็นระเบียบ",english:"Disorderly"},
+                {thai:"ไม่เหมาะสม",english:"Inappropriate"}, {thai:"ไม่คงที่",english:"Instable"}, {thai:"ไม่ใส่ใจ",english:"Inattentive"}
             ],
-            // --- GROUP 2: IN- (25 Words) ---
-            "IN- (ไม่/เข้า)": [
-                {thai:"ไม่สมบูรณ์",english:"Incomplete"},
-                {thai:"มองไม่เห็น",english:"Invisible"},
-                {thai:"ไม่พอใจ",english:"Inadequate"},
-                {thai:"ไม่สามารถเข้าถึงได้",english:"Inaccessible"},
-                {thai:"ไม่สามารถทนได้",english:"Intolerable"},
-                {thai:"ไม่สามารถหยุดได้",english:"Incessant"},
-                {thai:"ไม่สุภาพ",english:"Impolite"}, // Imp- เป็นรูปแบบย่อยของ In-
-                {thai:"เป็นไปไม่ได้",english:"Impossible"}, // Im-
-                {thai:"ไม่เป็นทางการ",english:"Informal"},
-                {thai:"การลงทุน",english:"Investment"},
-                {thai:"ภายใน",english:"Interior"},
-                {thai:"นำเข้า",english:"Import"},
-                {thai:"ฝัง",english:"Embed"}, // Em-
-                {thai:"ไม่สามารถแยกแยะได้",english:"Indistinguishable"},
-                {thai:"ไม่ยืดหยุ่น",english:"Inflexible"},
-                {thai:"ไม่ได้จงใจ",english:"Inadvertent"},
-                {thai:"ไม่เหมาะสม",english:"Inappropriate"},
-                {thai:"ไม่แน่นอน",english:"Insecure"},
-                {thai:"ไม่สามารถทำลายได้",english:"Indestructible"},
-                {thai:"ไม่มีประสบการณ์",english:"Inexperienced"},
-                {thai:"การฉีด",english:"Injection"},
-                {thai:"การสอบถาม",english:"Inquiry"},
-                {thai:"ไม่เหมาะสม",english:"Incompatible"},
-                {thai:"ไม่มีชีวิต",english:"Inanimate"},
-                {thai:"อยู่เฉย",english:"Inactive"}
+            // --- GROUP 2: Time/Order Prefixes (20 Words) ---
+            "TIME- (PRE-/POST-/EX-)": [
+                {thai:"ทำนาย",english:"Predict"}, {thai:"ดูก่อน",english:"Preview"}, {thai:"สมัยก่อน",english:"Prehistoric"}, {thai:"เตรียมการ",english:"Prepare"}, {thai:"มาก่อน",english:"Precede"},
+                {thai:"กำหนดล่วงหน้า",english:"Predefine"}, {thai:"ประเมินล่วงหน้า",english:"Preevaluate"}, {thai:"ก่อนที่จะเรียน",english:"Preschool"}, {thai:"หลังจบการศึกษา",english:"Postgraduate"}, {thai:"ยุคหลังสงคราม",english:"Postwar"},
+                {thai:"เหตุการณ์ภายหลัง",english:"Postscript"}, {thai:"หลังการผ่าตัด",english:"Postoperative"}, {thai:"อดีตประธานาธิบดี",english:"Ex-president"}, {thai:"ส่งออก",english:"Export"}, {thai:"ถอด",english:"Extract"},
+                {thai:"ขยาย",english:"Expand"}, {thai:"อดีตสามี",english:"Ex-husband"}, {thai:"อดีตนักเรียน",english:"Ex-student"}, {thai:"ระมัดระวัง",english:"Precaution"}, {thai:"ดูซ้ำ",english:"Rerun"} // Re- เป็นการกระทำซ้ำ
             ],
-            // --- GROUP 3: PRE- (20 Words) ---
-            "PRE- (ก่อน)": [
-                {thai:"เตรียมการ",english:"Prepare"},
-                {thai:"ทำนาย",english:"Predict"},
-                {thai:"ดูตัวอย่าง",english:"Preview"},
-                {thai:"กำหนดล่วงหน้า",english:"Predefine"},
-                {thai:"บรรพบุรุษ",english:"Predecessor"},
-                {thai:"วัยรุ่น",english:"Preteen"},
-                {thai:"ระมัดระวัง",english:"Precaution"},
-                {thai:"กำหนดล่วงหน้า",english:"Predetermine"},
-                {thai:"เกิดขึ้นก่อน",english:"Preexist"},
-                {thai:"ลำดับความสำคัญ",english:"Priority"}, // Prior-
-                {thai:"รับรู้",english:"Perceive"}, // Per-
-                {thai:"ก่อนการผลิต",english:"Pre-production"},
-                {thai:"สมัยก่อนประวัติศาสตร์",english:"Prehistoric"},
-                {thai:"อคติ",english:"Prejudice"},
-                {thai:"พรีเซนต์",english:"Present"},
-                {thai:"ข้ออ้าง",english:"Pretext"},
-                {thai:"ก่อนการเรียน",english:"Pre-school"},
-                {thai:"ล่วงหน้า",english:"Prepay"},
-                {thai:"ตั้งท้อง",english:"Pregnant"},
-                {thai:"ก่อนพิธี",english:"Pre-ceremony"}
+            // --- GROUP 3: Root Words (20 Words) ---
+            "ROOT- (AUDI/VIS/PORT)": [
+                {thai:"การได้ยิน",english:"Audible"}, {thai:"ห้องประชุม",english:"Auditorium"}, {thai:"ผู้ชม",english:"Audience"}, {thai:"ออดิชั่น",english:"Audition"}, {thai:"การตรวจสอบบัญชี",english:"Audit"},
+                {thai:"วิสัยทัศน์",english:"Vision"}, {thai:"สามารถมองเห็นได้",english:"Visible"}, {thai:"ภาพ",english:"Visual"}, {thai:"โทรทัศน์",english:"Television"}, {thai:"การเข้าชม",english:"Visit"},
+                {thai:"รายงาน",english:"Report"}, {thai:"กระเป๋าเดินทาง",english:"Portable"}, {thai:"การขนส่ง",english:"Transport"}, {thai:"พอร์ต (ช่อง)",english:"Port"}, {thai:"นักเดินทาง",english:"Porter"},
+                {thai:"การมองเห็น",english:"Clairvoyance"}, {thai:"ฟังเสียง",english:"Audio"}, {thai:"การนำเข้า",english:"Import"}, {thai:"การส่งออก",english:"Export"}, {thai:"วิดีโอ",english:"Video"}
             ],
-            // --- GROUP 4: DIS- (4 Words - เพื่อเป็นหมวดเสริม) ---
-            "DIS- (ตรงข้าม/ไม่)": [
-                {thai:"ไม่เห็นด้วย",english:"Disagree"},
-                {thai:"ไม่ชอบ",english:"Dislike"},
-                {thai:"หายไป",english:"Disappear"},
-                {thai:"เปิดเผย",english:"Disclose"} 
-            ],
-            // --- GROUP 5: SUB- (3 Words - เพื่อเป็นหมวดเสริม) ---
-            "SUB- (ใต้/ย่อย)": [
-                {thai:"รถไฟใต้ดิน",english:"Subway"},
-                {thai:"ส่ง",english:"Submit"},
-                {thai:"ย่อย",english:"Subdivision"}
+            // --- GROUP 4: Suffixes (20 Words) ---
+            "SUFFIX- (TION/-NESS/-LY)": [
+                {thai:"ความสุข",english:"Happiness"}, {thai:"ความมืด",english:"Darkness"}, {thai:"ความเศร้า",english:"Sadness"}, {thai:"ความดี",english:"Goodness"}, {thai:"ความอ่อนแอ",english:"Weakness"},
+                {thai:"ความสำเร็จ",english:"Success"}, {thai:"การกระทำ",english:"Action"}, {thai:"การศึกษา",english:"Education"}, {thai:"การสร้างสรรค์",english:"Creation"}, {thai:"สถานี",english:"Station"},
+                {thai:"อย่างรวดเร็ว",english:"Quickly"}, {thai:"อย่างช้าๆ",english:"Slowly"}, {thai:"โดยทั่วไป",english:"Generally"}, {thai:"อย่างง่ายดาย",english:"Easily"}, {thai:"อย่างระมัดระวัง",english:"Carefully"},
+                {thai:"เป็นไปได้",english:"Possible"}, {thai:"น่ารัก",english:"Lovable"}, {thai:"เชื่อถือได้",english:"Reliable"}, {thai:"ชื่นชม",english:"Admirable"}, {thai:"เป็นมิตร",english:"Friendly"}
             ]
         };
 
@@ -404,7 +325,7 @@
                 const theme = defaultTheme;
                 const button = document.createElement('button');
                 button.className = 'category-button';
-                // แสดงจำนวนคำศัพท์ในวงเล็บด้วย
+                // แสดงชื่อกลุ่มและจำนวนคำ
                 button.innerHTML = `${category} (${vocabularyData[category].length} คำ) ${theme.icon}`; 
                 
                 button.style.backgroundColor = theme.buttonBg;
@@ -428,7 +349,7 @@
             englishWord.style.color = theme.cardAccent;
 
             // 2. กำหนดชื่อบทเรียน
-            lessonTitle.textContent = `Prefix: ${category}`; 
+            lessonTitle.textContent = `กลุ่ม: ${category}`; 
             
             currentIndex = 0;
             displayVocab();
@@ -438,6 +359,7 @@
         }
 
         function displayVocab() {
+            // ... (Logic remains the same) ...
             if (currentIndex < currentCategoryVocabs.length) {
                 currentVocab = currentCategoryVocabs[currentIndex];
                 englishWord.textContent = currentVocab.english;
@@ -453,6 +375,7 @@
         }
 
         function updateButtonState() {
+            // ... (Logic remains the same) ...
             if (currentIndex >= currentCategoryVocabs.length) {
                 nextBtn.disabled = true;
                 prevBtn.disabled = true;
