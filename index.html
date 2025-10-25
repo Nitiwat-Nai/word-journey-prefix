@@ -1,268 +1,474 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌈 Word Journey: Prefix Focus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --pink: #f78fb3;
-      --blue: #74b9ff;
-      --yellow: #ffeaa7;
-      --green: #55efc4;
-      --purple: #a29bfe;
-      --text-dark: #2d3436;
-      --card-bg: #ffffffd9;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Word Journey: Prefix Focus (Styled)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ------------------------------------------- */
+        /* --- Color Variables from Prefix.html --- */
+        /* ------------------------------------------- */
+        :root {
+            /* Prefix Colors */
+            --pink: #f78fb3;
+            --blue: #74b9ff;
+            --yellow: #ffeaa7;
+            --green: #55efc4;
+            --purple: #a29bfe;
+            --text-dark: #2d3436;
+            --card-bg: #ffffffd9;
+            
+            /* Background/General Theme */
+            --color-red: var(--pink); /* ใช้ pink เป็นสีหลักของ Title แทน red */
+            --color-background-start: var(--blue); /* Start Blue */
+            --color-background-end: var(--yellow); /* End Yellow */
+            --text-color: var(--text-dark); /* Dark Text */
+            --card-base-color: var(--card-bg);
+        }
 
-    body {
-      font-family: 'Sarabun', sans-serif;
-      margin: 0;
-      background: linear-gradient(145deg, var(--blue), var(--pink), var(--yellow));
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 1rem;
-      animation: bgmove 10s infinite alternate;
-      background-size: 300% 300%;
-    }
+        body {
+            font-family: 'Mali', cursive, 'Sarabun', sans-serif;
+            /* Background Gradient from Prefix.html */
+            background: linear-gradient(145deg, var(--blue), var(--pink), var(--yellow));
+            background-size: 300% 300%;
+            animation: bgmove 10s infinite alternate;
+            color: var(--text-color);
+            margin: 0;
+            padding: 1rem; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        @keyframes bgmove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
 
-    @keyframes bgmove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
+        .container {
+            /* Card/Container style from Word Journey.html but using Prefix colors */
+            background-color: var(--card-base-color);
+            padding: 1.5rem; 
+            border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+            width: 100%;
+            max-width: 600px; 
+            box-sizing: border-box;
+            border: 5px solid var(--color-red); 
+            animation: pop 0.5s ease; /* Pop animation from Prefix.html */
+        }
+        @keyframes pop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
 
-    .container {
-      background: var(--card-bg);
-      border-radius: 25px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 500px;
-      padding: 1.2rem;
-      animation: pop 0.5s ease;
-    }
+        h1 {
+            color: var(--color-red); /* Title color: Pink */
+            font-family: 'Mali', cursive;
+            font-size: 2.5em; 
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        h1.lesson-title {
+            color: var(--text-color); /* Dark Text for lesson title */
+            font-size: 1.8em !important; /* Smaller size for lesson title */
+        }
 
-    @keyframes pop {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+        /* ----------------------- */
+        /* Category Page           */
+        /* ----------------------- */
+        #category-page { display: block; }
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .category-button {
+            /* Style from Prefix.html */
+            background-color: var(--purple); 
+            color: white; 
+            border: none;
+            padding: 1.8rem 1rem; 
+            border-radius: 20px;
+            font-size: 1.4em; 
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4); 
+            transition: all 0.2s ease-in-out;
+            text-transform: uppercase;
+            font-family: 'Mali', cursive;
+        }
+        /* Hover effect from Word Journey.html adapted for Prefix colors */
+        .category-button:hover { transform: translateY(-3px); background-color: var(--pink); }
+        .category-button:active { transform: translateY(1px) !important; box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4) !important; }
 
-    h1 {
-      font-family: 'Mali', cursive;
-      color: var(--text-dark);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
+        /* ----------------------- */
+        /* Lesson Page             */
+        /* ----------------------- */
+        #lesson-page { display: none; }
+        #vocab-card {
+            /* Style from Word Journey.html, colors are set via JS */
+            border-radius: 25px;
+            padding: 2.5rem 1.5rem; 
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            transition: background-color 0.5s, border-color 0.5s;
+            animation: fadeIn 0.5s ease; /* FadeIn from Prefix.html */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-    .category-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-    }
+        #english-word {
+            font-size: 3.5em; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        #thai-word {
+            font-size: 2.5em; 
+            color: white; /* Thai word color: White */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            margin-bottom: 0;
+        }
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem; 
+            margin-top: 1rem;
+        }
+        .control-group button {
+            flex-grow: 1; 
+            min-width: 100px; 
+            color: white;
+            border: none;
+            padding: 15px 15px; 
+            border-radius: 50px;
+            font-size: 1.2em; 
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+            font-family: 'Mali', cursive;
+        }
+        .control-group button:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
 
-    .category-button {
-      background-color: var(--purple);
-      color: white;
-      border: none;
-      border-radius: 18px;
-      font-size: 1.1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-      transition: all 0.2s ease-in-out;
-      font-family: 'Mali', cursive;
-    }
-
-    .category-button:hover {
-      transform: translateY(-3px);
-      background-color: var(--pink);
-    }
-
-    #lesson-page { display: none; }
-
-    #vocab-card {
-      background: var(--blue);
-      border-radius: 20px;
-      padding: 1.5rem;
-      color: white;
-      margin-bottom: 1rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    #english-word {
-      font-size: 2.5rem;
-      font-weight: 700;
-      display: block;
-    }
-
-    #thai-word {
-      font-size: 1.6rem;
-      margin-top: 0.5rem;
-    }
-
-    .control-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    button {
-      font-family: 'Mali', cursive;
-      border: none;
-      border-radius: 30px;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.1s ease, background-color 0.2s;
-      box-shadow: 0 3px 0 rgba(0,0,0,0.2);
-    }
-
-    button:active {
-      transform: translateY(2px);
-      box-shadow: none;
-    }
-
-    .nav-btn { background-color: var(--pink); }
-    .audio-btn { background-color: var(--green); }
-    .play-btn { background-color: var(--blue); }
-    .back-btn { background-color: var(--purple); }
-
-    @media (min-width: 600px) {
-      .category-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+        /* ------------------------------------------- */
+        /* --- Control Button Colors (Prefix Theme) --- */
+        /* ------------------------------------------- */
+        /* Note: Using colors from Prefix.html's CSS */
+        .nav-btn { background-color: var(--pink); } 
+        .nav-btn:hover { background-color: #d86895; } /* Darker pink for hover */
+        .audio-btn { background-color: var(--green); }
+        .audio-btn:hover { background-color: #38c5a2; } /* Darker green for hover */
+        .play-btn { background-color: var(--blue); }
+        .play-btn:hover { background-color: #5aa1e5; } /* Darker blue for hover */
+        .back-btn { background-color: var(--purple); }
+        .back-btn:hover { background-color: #8c82e2; } /* Darker purple for hover */
+        
+        /* Box-shadow for buttons (optional, but good for depth) */
+        .nav-btn { box-shadow: 0 4px 0 #d86895; }
+        .audio-btn { box-shadow: 0 4px 0 #38c5a2; }
+        .play-btn { box-shadow: 0 4px 0 #5aa1e5; }
+        .back-btn { box-shadow: 0 4px 0 #8c82e2; }
+        
+        /* ----------------------- */
+        /* Desktop/Tablet Override */
+        /* ----------------------- */
+        @media (min-width: 600px) {
+            .container {
+                padding: 2.5rem;
+                max-width: 700px;
+            }
+            h1 {
+                font-size: 3.5em;
+            }
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+                gap: 1.5rem;
+            }
+            .category-button {
+                padding: 1.5rem;
+                font-size: 1.3em;
+            }
+            #english-word {
+                font-size: 4em;
+            }
+            #thai-word {
+                font-size: 3em;
+            }
+            .control-group button {
+                min-width: 120px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div id="category-page">
-      <h1>📚 Word Journey<br>Prefix Focus</h1>
-      <div id="category-grid" class="category-grid"></div>
+
+    <div class="container">
+        <div id="category-page">
+            <h1>📚 Word Journey<br>Prefix Focus</h1>
+            <div id="category-grid" class="category-grid"></div>
+        </div>
+
+        <div id="lesson-page">
+            <h1 id="lesson-title" class="lesson-title">...</h1>
+            <div id="vocab-card">
+                <span id="english-word" class="word">...</span>
+                <span id="thai-word" class="word">...</span>
+            </div>
+            
+            <div class="control-group">
+                <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
+                <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
+            </div>
+            <div class="control-group">
+                <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">🔊 ฟัง (ไทย)</button>
+                <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">🎧 Listen (EN)</button>
+            </div>
+            <div class="control-group">
+                <button id="play-pause-btn" class="play-btn">▶️ Play</button>
+                <button id="stop-btn" class="back-btn">⏹️ Stop</button>
+                <button id="back-to-cat-btn" class="back-btn">🏠 กลับ</button>
+            </div>
+        </div>
     </div>
 
-    <div id="lesson-page">
-      <h1 id="lesson-title">...</h1>
-      <div id="vocab-card">
-        <span id="english-word">...</span>
-        <span id="thai-word">...</span>
-      </div>
-      <div class="control-group">
-        <button id="prev-btn" class="nav-btn">◀️ ก่อนหน้า</button>
-        <button id="next-btn" class="nav-btn">ถัดไป ▶️</button>
-      </div>
-      <div class="control-group">
-        <button onclick="speakText(currentVocab.thai, 'th-TH')" class="audio-btn">🔊 ฟัง (ไทย)</button>
-        <button onclick="speakText(currentVocab.english, 'en-US')" class="audio-btn">🎧 Listen (EN)</button>
-      </div>
-      <div class="control-group">
-        <button id="play-pause-btn" class="play-btn">▶️ Play</button>
-        <button id="stop-btn" class="back-btn">⏹️ Stop</button>
-        <button id="back-to-cat-btn" class="back-btn">🏠 กลับ</button>
-      </div>
-    </div>
-  </div>
+    <script>
+        // ----------------------------------------------------
+        // --- DATA from Prefix.html ---
+        // ----------------------------------------------------
+        const vocabularyData = {
+            "IN-": [{thai:"ไม่สมบูรณ์",english:"Incomplete"},{thai:"มองไม่เห็น",english:"Invisible"}],
+            "EX-": [{thai:"ส่งออก",english:"Export"},{thai:"ตรวจสอบ",english:"Examine"}],
+            "PRE-": [{thai:"เตรียมการ",english:"Prepare"},{thai:"ทำนาย",english:"Predict"}],
+            "DIS-": [{thai:"ไม่เห็นด้วย",english:"Disagree"},{thai:"ไม่ชอบ",english:"Dislike"}],
+            "UN-": [{thai:"ไม่พอใจ",english:"Unhappy"},{thai:"ไม่เป็นธรรม",english:"Unfair"}],
+            "RE-": [{thai:"ทำซ้ำ",english:"Repeat"},{thai:"เขียนใหม่",english:"Rewrite"}],
+            "CO-": [{thai:"ร่วมมือ",english:"Cooperate"},{thai:"เปรียบเทียบ",english:"Compare"}],
+            "SUB-": [{thai:"รถไฟใต้ดิน",english:"Subway"},{thai:"ส่ง",english:"Submit"}],
+            "ANTI-": [{thai:"ยาปฏิชีวนะ",english:"Antibiotic"},{thai:"คำตรงข้าม",english:"Antonym"}],
+            "INTER-": [{thai:"ระหว่างประเทศ",english:"International"},{thai:"อินเทอร์เน็ต",english:"Internet"}]
+        };
 
-  <script>
-    const vocabularyData = {
-      "IN-": [{thai:"ไม่สมบูรณ์",english:"Incomplete"},{thai:"มองไม่เห็น",english:"Invisible"}],
-      "EX-": [{thai:"ส่งออก",english:"Export"},{thai:"ตรวจสอบ",english:"Examine"}],
-      "PRE-": [{thai:"เตรียมการ",english:"Prepare"},{thai:"ทำนาย",english:"Predict"}],
-      "DIS-": [{thai:"ไม่เห็นด้วย",english:"Disagree"},{thai:"ไม่ชอบ",english:"Dislike"}],
-      "UN-": [{thai:"ไม่พอใจ",english:"Unhappy"},{thai:"ไม่เป็นธรรม",english:"Unfair"}],
-      "RE-": [{thai:"ทำซ้ำ",english:"Repeat"},{thai:"เขียนใหม่",english:"Rewrite"}],
-      "CO-": [{thai:"ร่วมมือ",english:"Cooperate"},{thai:"เปรียบเทียบ",english:"Compare"}],
-      "SUB-": [{thai:"รถไฟใต้ดิน",english:"Subway"},{thai:"ส่ง",english:"Submit"}],
-      "ANTI-": [{thai:"ยาปฏิชีวนะ",english:"Antibiotic"},{thai:"คำตรงข้าม",english:"Antonym"}],
-      "INTER-": [{thai:"ระหว่างประเทศ",english:"International"},{thai:"อินเทอร์เน็ต",english:"Internet"}]
-    };
+        // --- THEME DATA (Fixed for all prefixes based on Prefix.html colors) ---
+        // ใช้ชุดสีคงที่สำหรับทุกหมวดหมู่เพื่อให้สอดคล้องกับธีมหลักของ Prefix.html
+        const defaultTheme = {
+            icon: "✨", 
+            buttonBg: 'var(--purple)', 
+            buttonShadow: 'var(--blue)', // ใช้ blue เป็น shadow/hover เพื่อความหลากหลาย
+            cardPrimary: 'var(--blue)', // Card BG: Blue
+            cardAccent: 'var(--yellow)' // English Word/Border: Yellow
+        };
+        
+        // ----------------------------------------------------
+        // --- DOM Elements & State ---
+        // ----------------------------------------------------
+        const categoryPage = document.getElementById('category-page');
+        const lessonPage = document.getElementById('lesson-page');
+        const categoryGrid = document.getElementById('category-grid');
+        const lessonTitle = document.getElementById('lesson-title');
+        const vocabCard = document.getElementById('vocab-card');
+        const thaiWord = document.getElementById('thai-word');
+        const englishWord = document.getElementById('english-word');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const backToCatBtn = document.getElementById('back-to-cat-btn');
+        const stopBtn = document.getElementById('stop-btn');
 
-    const categoryGrid = document.getElementById("category-grid");
-    const categoryPage = document.getElementById("category-page");
-    const lessonPage = document.getElementById("lesson-page");
-    const lessonTitle = document.getElementById("lesson-title");
-    const englishWord = document.getElementById("english-word");
-    const thaiWord = document.getElementById("thai-word");
-    const playPauseBtn = document.getElementById("play-pause-btn");
-    const nextBtn = document.getElementById("next-btn");
-    const prevBtn = document.getElementById("prev-btn");
-    const backBtn = document.getElementById("back-to-cat-btn");
-    const stopBtn = document.getElementById("stop-btn");
+        let currentCategoryVocabs = [];
+        let currentIndex = 0;
+        let isPlaying = false;
+        let voices = [];
+        let currentVocab = {};
 
-    let currentVocab = {};
-    let currentList = [];
-    let index = 0;
-    let isPlaying = false;
+        // ----------------------------------------------------
+        // --- Web Speech API (Logic from Word Journey.html) ---
+        // ----------------------------------------------------
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                voices = window.speechSynthesis.getVoices();
+            };
+        }
+        function speakText(text, lang, onEndCallback = null) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                
+                // Adjusting rate/volume (from Word Journey.html)
+                if (lang === 'th-TH') { utterance.rate = 1.1; } else { utterance.rate = 1.0; }
 
-    Object.keys(vocabularyData).forEach(cat=>{
-      const btn=document.createElement("button");
-      btn.className="category-button";
-      btn.textContent=cat;
-      btn.onclick=()=>startLesson(cat);
-      categoryGrid.appendChild(btn);
-    });
+                // Voice selection (simplified)
+                let targetVoice = voices.find(v => v.lang.startsWith(lang));
+                if (targetVoice) { utterance.voice = targetVoice; }
 
-    function startLesson(cat){
-      categoryPage.style.display="none";
-      lessonPage.style.display="block";
-      lessonTitle.textContent=cat;
-      currentList=vocabularyData[cat];
-      index=0;
-      showWord();
-    }
+                if (onEndCallback) { utterance.onend = onEndCallback; }
+                window.speechSynthesis.speak(utterance);
+            }
+        }
 
-    function showWord(){
-      currentVocab=currentList[index];
-      englishWord.textContent=currentVocab.english;
-      thaiWord.textContent=currentVocab.thai;
-    }
+        // ----------------------------------------------------
+        // --- Game Logic (Combined/Adapted) ---
+        // ----------------------------------------------------
+        function createCategoryButtons() {
+            categoryGrid.innerHTML = ''; 
 
-    nextBtn.onclick=()=>{ if(index<currentList.length-1){index++;showWord();}};
-    prevBtn.onclick=()=>{ if(index>0){index--;showWord();}};
-    backBtn.onclick=()=>{lessonPage.style.display="none";categoryPage.style.display="block";stopAuto();};
-    playPauseBtn.onclick=toggleAutoPlay;
-    stopBtn.onclick=stopAuto;
+            for (const category in vocabularyData) {
+                const theme = defaultTheme;
+                const button = document.createElement('button');
+                button.className = 'category-button';
+                button.innerHTML = `${category} ${theme.icon}`; 
+                
+                button.style.backgroundColor = theme.buttonBg;
+                button.style.boxShadow = `0 6px 0 ${theme.buttonShadow}`;
+                
+                // Set hover/mouseleave directly on element for theme consistency
+                button.onmouseover = () => { button.style.backgroundColor = theme.buttonShadow; button.style.transform = 'translateY(-3px)'; };
+                button.onmouseleave = () => { button.style.backgroundColor = theme.buttonBg; button.style.transform = 'translateY(0)'; };
+                
+                button.addEventListener('click', () => startLesson(category));
+                categoryGrid.appendChild(button);
+            }
+        }
 
-    function speakText(text,lang,cb=null){
-      if('speechSynthesis'in window){
-        window.speechSynthesis.cancel();
-        const u=new SpeechSynthesisUtterance(text);
-        u.lang=lang;
-        if(cb)u.onend=cb;
-        window.speechSynthesis.speak(u);
-      }
-    }
+        function startLesson(category) {
+            currentCategoryVocabs = vocabularyData[category];
+            const theme = defaultTheme;
 
-    function toggleAutoPlay(){
-      if(isPlaying){stopAuto();}
-      else{isPlaying=true;playPauseBtn.textContent="⏸️ Pause";autoPlay();}
-    }
+            // 1. กำหนดธีมสีของ Vocab Card (ใช้สีคงที่จาก defaultTheme)
+            vocabCard.style.backgroundColor = theme.cardPrimary;
+            vocabCard.style.border = `5px solid ${theme.cardAccent}`; 
+            englishWord.style.color = theme.cardAccent;
 
-    function stopAuto(){
-      isPlaying=false;
-      playPauseBtn.textContent="▶️ Play";
-      window.speechSynthesis.cancel();
-    }
+            // 2. กำหนดชื่อบทเรียน
+            lessonTitle.textContent = `Prefix: ${category}`; 
+            
+            currentIndex = 0;
+            displayVocab();
+            categoryPage.style.display = 'none';
+            lessonPage.style.display = 'block';
+            updateButtonState();
+        }
 
-    function autoPlay(){
-      if(!isPlaying)return;
-      speakText(currentList[index].english,'en-US',()=>{
-        speakText(currentList[index].thai,'th-TH',()=>{
-          if(index<currentList.length-1){
-            index++;showWord();setTimeout(autoPlay,700);
-          }else{stopAuto();}
-        });
-      });
-    }
-  </script>
+        function displayVocab() {
+            if (currentIndex < currentCategoryVocabs.length) {
+                currentVocab = currentCategoryVocabs[currentIndex];
+                englishWord.textContent = currentVocab.english;
+                thaiWord.textContent = currentVocab.thai;
+                
+            } else {
+                englishWord.textContent = "Finished! 🥳";
+                thaiWord.textContent = "จบแล้ว! 🎉 กลับไปหน้าหลักได้เลย";
+                stopAutoPlay();
+                // ปิดการใช้งานปุ่มถัดไป/ก่อนหน้า เมื่อจบแล้ว
+                nextBtn.disabled = true;
+                prevBtn.disabled = true;
+            }
+        }
+
+        function updateButtonState() {
+            if (currentIndex >= currentCategoryVocabs.length) {
+                nextBtn.disabled = true;
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= currentCategoryVocabs.length - 1;
+            }
+            // Update Play/Pause button text
+            playPauseBtn.textContent = isPlaying ? '⏸️ Pause' : '▶️ Play';
+        }
+
+        function nextVocab() {
+            if (currentIndex < currentCategoryVocabs.length) { // Allow one extra step for "Finished" message
+                currentIndex++;
+                displayVocab();
+                updateButtonState();
+            }
+        }
+        
+        function prevVocab() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayVocab();
+                updateButtonState();
+            }
+        }
+
+        function playCurrentVocabAuto() {
+            if (currentIndex >= currentCategoryVocabs.length) {
+                stopAutoPlay();
+                displayVocab(); 
+                return;
+            }
+            const currentVocabToPlay = currentCategoryVocabs[currentIndex];
+            
+            speakText(currentVocabToPlay.english, 'en-US', () => {
+                speakText(currentVocabToPlay.thai, 'th-TH', () => {
+                    if (isPlaying) {
+                        currentIndex++;
+                        displayVocab();
+                        updateButtonState();
+                        setTimeout(playCurrentVocabAuto, 1000); 
+                    }
+                });
+            });
+        }
+
+        function toggleAutoPlay() {
+            if (isPlaying) {
+                stopAutoPlay();
+            } else {
+                isPlaying = true;
+                // If finished, restart from the beginning
+                if (currentIndex >= currentCategoryVocabs.length) {
+                    currentIndex = 0; 
+                    displayVocab();
+                }
+                updateButtonState();
+                playCurrentVocabAuto();
+            }
+        }
+
+        function stopAutoPlay() {
+            isPlaying = false;
+            updateButtonState();
+            window.speechSynthesis.cancel();
+        }
+
+        function goToCategoryPage() {
+            stopAutoPlay();
+            lessonPage.style.display = 'none';
+            categoryPage.style.display = 'block';
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', nextVocab);
+        prevBtn.addEventListener('click', prevVocab);
+        playPauseBtn.addEventListener('click', toggleAutoPlay);
+        stopBtn.addEventListener('click', stopAutoPlay);
+        backToCatBtn.addEventListener('click', goToCategoryPage);
+
+        // Initial setup
+        createCategoryButtons();
+    </script>
 </body>
 </html>
