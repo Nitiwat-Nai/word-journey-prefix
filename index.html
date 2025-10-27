@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌈 Word Journey: Mega Prefix/Suffix Focus</title>
+    <title>🌈 Word Journey: Ultra Mega Prefix/Suffix Focus</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
     
@@ -83,7 +83,7 @@
         #category-page { display: block; }
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ปรับให้พอดี */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
             gap: 1rem;
             margin-top: 1.5rem;
         }
@@ -91,9 +91,9 @@
             background-color: var(--purple); 
             color: white; 
             border: none;
-            padding: 1.5rem 1rem; /* ปรับให้พอดีกับคำยาว */
+            padding: 1.5rem 1rem; 
             border-radius: 20px;
-            font-size: 1.1em; /* ปรับขนาดตัวอักษรให้เล็กลงเล็กน้อย */
+            font-size: 1.1em; 
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4); 
@@ -138,6 +138,7 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             margin-bottom: 0;
         }
+        
         /* ... (Control Group and Button Styles remain the same) ... */
         .control-group {
             display: flex;
@@ -185,7 +186,7 @@
         @media (min-width: 600px) {
             .container {
                 padding: 2.5rem;
-                max-width: 800px; /* ขยายขนาด Container สำหรับหมวดหมู่ที่มากขึ้น */
+                max-width: 800px; 
             }
             .category-grid {
                 grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -226,7 +227,7 @@
 
     <script>
         // ----------------------------------------------------
-        // --- MEGA VOCABULARY DATA (Each group has 20+ words) ---
+        // --- ULTRA MEGA VOCABULARY DATA (6 Groups, 123 Words total) ---
         // ----------------------------------------------------
         const vocabularyData = {
             // --- GROUP 1: Negation Prefixes (23 Words) ---
@@ -242,7 +243,7 @@
                 {thai:"ทำนาย",english:"Predict"}, {thai:"ดูก่อน",english:"Preview"}, {thai:"สมัยก่อน",english:"Prehistoric"}, {thai:"เตรียมการ",english:"Prepare"}, {thai:"มาก่อน",english:"Precede"},
                 {thai:"กำหนดล่วงหน้า",english:"Predefine"}, {thai:"ประเมินล่วงหน้า",english:"Preevaluate"}, {thai:"ก่อนที่จะเรียน",english:"Preschool"}, {thai:"หลังจบการศึกษา",english:"Postgraduate"}, {thai:"ยุคหลังสงคราม",english:"Postwar"},
                 {thai:"เหตุการณ์ภายหลัง",english:"Postscript"}, {thai:"หลังการผ่าตัด",english:"Postoperative"}, {thai:"อดีตประธานาธิบดี",english:"Ex-president"}, {thai:"ส่งออก",english:"Export"}, {thai:"ถอด",english:"Extract"},
-                {thai:"ขยาย",english:"Expand"}, {thai:"อดีตสามี",english:"Ex-husband"}, {thai:"อดีตนักเรียน",english:"Ex-student"}, {thai:"ระมัดระวัง",english:"Precaution"}, {thai:"ดูซ้ำ",english:"Rerun"} // Re- เป็นการกระทำซ้ำ
+                {thai:"ขยาย",english:"Expand"}, {thai:"อดีตสามี",english:"Ex-husband"}, {thai:"อดีตนักเรียน",english:"Ex-student"}, {thai:"ระมัดระวัง",english:"Precaution"}, {thai:"ดูซ้ำ",english:"Rerun"} 
             ],
             // --- GROUP 3: Root Words (20 Words) ---
             "ROOT- (AUDI/VIS/PORT)": [
@@ -257,6 +258,20 @@
                 {thai:"ความสำเร็จ",english:"Success"}, {thai:"การกระทำ",english:"Action"}, {thai:"การศึกษา",english:"Education"}, {thai:"การสร้างสรรค์",english:"Creation"}, {thai:"สถานี",english:"Station"},
                 {thai:"อย่างรวดเร็ว",english:"Quickly"}, {thai:"อย่างช้าๆ",english:"Slowly"}, {thai:"โดยทั่วไป",english:"Generally"}, {thai:"อย่างง่ายดาย",english:"Easily"}, {thai:"อย่างระมัดระวัง",english:"Carefully"},
                 {thai:"เป็นไปได้",english:"Possible"}, {thai:"น่ารัก",english:"Lovable"}, {thai:"เชื่อถือได้",english:"Reliable"}, {thai:"ชื่นชม",english:"Admirable"}, {thai:"เป็นมิตร",english:"Friendly"}
+            ],
+            // --- NEW GROUP 5: Location Prefixes (20 Words) ---
+            "LOC- (SUB-/TRANS-/INTER-)": [
+                {thai:"รถไฟใต้ดิน",english:"Subway"}, {thai:"ใต้ดิน",english:"Subsoil"}, {thai:"รอง (ตัวแทน)",english:"Substitute"}, {thai:"ย่อย",english:"Subdivision"}, {thai:"ใต้ระดับน้ำทะเล",english:"Submarine"},
+                {thai:"เปลี่ยนรูป",english:"Transform"}, {thai:"ขนส่ง",english:"Transport"}, {thai:"ข้ามมหาสมุทร",english:"Transatlantic"}, {thai:"ส่งผ่าน",english:"Transmit"}, {thai:"แปล",english:"Translate"},
+                {thai:"ระหว่างประเทศ",english:"International"}, {thai:"การแทรกแซง",english:"Intervention"}, {thai:"ปฏิสัมพันธ์",english:"Interaction"}, {thai:"ระหว่างรัฐ",english:"Interstate"}, {thai:"อินเทอร์เน็ต",english:"Internet"},
+                {thai:"ระหว่างวัฒนธรรม",english:"Intercultural"}, {thai:"ใต้ผิวหนัง",english:"Subcutaneous"}, {thai:"เปลี่ยนทิศทาง",english:"Transverse"}, {thai:"กลางแจ้ง",english:"Outdoor"}, {thai:"ภายใน",english:"Indoor"} 
+            ],
+            // --- NEW GROUP 6: Quantity/Size Prefixes (20 Words) ---
+            "QTY- (UNI-/MULTI-/MICRO-)": [
+                {thai:"เป็นหนึ่งเดียว",english:"Unify"}, {thai:"หนึ่งเดียว",english:"Unique"}, {thai:"จักรวาล",english:"Universe"}, {thai:"เครื่องแบบ",english:"Uniform"}, {thai:"ขาเดียว",english:"Unicycle"},
+                {thai:"หลากหลาย",english:"Multiple"}, {thai:"หลายภาษา",english:"Multilingual"}, {thai:"หลายชั้น",english:"Multilayer"}, {thai:"ล้านล้าน",english:"Multimillion"}, {thai:"อเนกประสงค์",english:"Multipurpose"},
+                {thai:"กล้องจุลทรรศน์",english:"Microscope"}, {thai:"เศรษฐศาสตร์จุลภาค",english:"Microeconomics"}, {thai:"ขนาดเล็กมาก",english:"Microsized"}, {thai:"การผ่าตัดจุลภาค",english:"Microsurgery"}, {thai:"ไมโครโฟน",english:"Microphone"},
+                {thai:"มากไป",english:"Oversize"}, {thai:"ขนาดใหญ่",english:"Megabyte"}, {thai:"ขนาดเล็ก",english:"Minibus"}, {thai:"ครึ่งหนึ่ง",english:"Semicircle"}, {thai:"จักรยานสองล้อ",english:"Bicycle"}
             ]
         };
 
@@ -325,7 +340,6 @@
                 const theme = defaultTheme;
                 const button = document.createElement('button');
                 button.className = 'category-button';
-                // แสดงชื่อกลุ่มและจำนวนคำ
                 button.innerHTML = `${category} (${vocabularyData[category].length} คำ) ${theme.icon}`; 
                 
                 button.style.backgroundColor = theme.buttonBg;
@@ -359,7 +373,6 @@
         }
 
         function displayVocab() {
-            // ... (Logic remains the same) ...
             if (currentIndex < currentCategoryVocabs.length) {
                 currentVocab = currentCategoryVocabs[currentIndex];
                 englishWord.textContent = currentVocab.english;
@@ -375,7 +388,6 @@
         }
 
         function updateButtonState() {
-            // ... (Logic remains the same) ...
             if (currentIndex >= currentCategoryVocabs.length) {
                 nextBtn.disabled = true;
                 prevBtn.disabled = true;
